@@ -9,6 +9,8 @@ paths.extend((root/'docs').glob('*.md'))
 paths.extend((root/'docs').glob('*-results.json'))
 for name in ['baseline/home-1440.png','first-pass/desktop-hero.png','final/hero-desktop.png','final/home-mobile.png','final/contextguard-mobile.png','final/termwise-desktop.png']:
     paths.append(root/'docs/screenshots'/name)
+for name in ['three-hero-desktop.png','project-desktop.png','hero-mobile.png']:
+    paths.append(root/'docs/screenshots/motion'/name)
 manifest=[]
 for p in sorted(set(paths)):
     b=p.read_bytes();name=p.relative_to(root).as_posix()

@@ -1,0 +1,30 @@
+{
+  "checks": [
+    "real Three.js canvas mounted",
+    "3D selection follows HTML source",
+    "3D selection follows HTML stage",
+    "provenance returns to the selected source",
+    "pause stops the renderer",
+    "paused diagram still updates selection",
+    "play resumes the renderer",
+    "project entrance really animates",
+    "connectors draw in",
+    "scroll progress advances",
+    "work index follows project",
+    "no motion overflow at 320",
+    "no motion overflow at 390",
+    "no motion overflow at 768",
+    "no motion overflow at 1024",
+    "no motion overflow at 1440",
+    "no motion overflow at 1920",
+    "reduced motion disposes canvas",
+    "reduced motion restores semantic SVG",
+    "reduced motion stops title animation",
+    "mobile uses lightweight SVG",
+    "mobile has visible moving flow",
+    "WebGL failure keeps SVG visible",
+    "WebGL failure preserves controls",
+    "no runtime errors"
+  ],
+  "errors": []
+}

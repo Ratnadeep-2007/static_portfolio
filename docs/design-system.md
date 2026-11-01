@@ -44,3 +44,9 @@ Every system diagram is independently authored from public README architecture a
 ## First visual revision
 
 The 320 px first pass exposed a grid min-content overflow from the long name. The grid now uses `minmax(0,...)` and the phone name scale follows available width. Explorer label sizes were increased and its desktop drawing height constrained, bringing the study into the opening view without a continuous renderer. Full-page captures now explicitly load lazy figures before accepting screenshots.
+
+## Expressive motion revision
+
+The owner subsequently requested visible scroll motion and Three.js effects. The palette is retained: charcoal and near-black surfaces, warm ivory reading sections, warm white text, copper emphasis, and quiet brown rules. The spatial scene uses derived dark copper `#493422` for selected faces and `#28221C` for neutral faces.
+
+The new name masks, artwork wipes, connector drawing, reading progress, sticky work index and bounded diagram drift create a clear scroll rhythm. The original evidence graph gains a locally bundled optional Three.js renderer on desktop. It pauses offscreen, uses SVG on mobile/reduced-motion/no-WebGL paths, and preserves the native explanatory controls. See the updated motion specification and renderer decision for current behavior; the first revision above is historical evidence.

@@ -6,12 +6,16 @@ Tested 1 November 2026 in headless Microsoft Edge through Python Playwright 1.62
 
 | Command | Observed result |
 |---|---|
-| `npm.cmd install --ignore-scripts --no-audit --no-fund` | Success; no third-party runtime/build packages required |
+| `npm.cmd install --ignore-scripts --no-audit --no-fund` | Initial static build installed successfully; the later motion revision adds pinned dependencies below |
+| `npm.cmd install three@0.187.0 --save-exact --ignore-scripts --no-audit --no-fund` | Success; optional Three.js renderer pinned and MIT license retained |
+| `npm.cmd install --save-dev --save-exact esbuild@0.28.2 --no-audit --no-fund` | Success; installed platform binary works without approving the optional postinstall script |
 | `npm.cmd run dev` (temporary port 4181) | Built successfully; preview returned HTTP 200; watcher initialized; temporary server stopped after check |
 | `npm.cmd run build` | Five static content pages plus a 404, assets, canonical/OG metadata, robots and sitemap |
 | `npm.cmd run preview` | Running local preview at http://localhost:4173 |
 | `npm.cmd test` | **6 test groups passed**, 0 failed |
 | `npm.cmd run test:browser` | **104 assertions passed**, 0 script errors, 0 unexpected HTTP failures |
+| `python scripts/check-motion.py` | **25 motion assertions passed**, 0 runtime errors |
+| `python scripts/record-motion.py` | Actual browser walkthrough recorded locally as motion-preview.webm; it is not an autoplay site asset |
 | `python scripts/generate-social-images.py` | Five original PNG social images generated from the project's own SVGs |
 | `python scripts/check-contrast.py` | Six principal text/background pairs exceed 4.5:1 |
 | `python scripts/measure-performance.py` | Three fresh-context samples per version; raw results and method saved |
@@ -28,6 +32,7 @@ Tested 1 November 2026 in headless Microsoft Edge through Python Playwright 1.62
 - Native clipboard feedback: **Email address copied.**. Explicit success and rejected-clipboard branches were also exercised with controlled responses; mailto remains usable.
 - Simulated 150 ms latency and 200 KiB/s download: page remains readable and explorer controls work. This is a controlled local profile, not a public-network benchmark.
 - Local DM Sans and JetBrains Mono faces load. Font file headers, notices and paths are checked. The mono font was subset to 24,204 bytes.
+- Three.js canvas creation, source/stage synchronization, pause/play, paused selection changes, SVG fallback, reduced-motion disposal, visible CSS signal flow, actual scroll entrance/path animations, reading progress and active project indexing are verified separately in `motion-results.json`.
 
 ## Visual QA cycle and repairs
 
@@ -35,6 +40,7 @@ Tested 1 November 2026 in headless Microsoft Edge through Python Playwright 1.62
 2. Built the first design and inspected [the initial hero](screenshots/first-pass/desktop-hero.png), mobile page and case-study captures. The first pass exposed overflow at 320 px from the long name's grid min-content width. The explorer was also too tall on desktop and its control labels too small.
 3. Replaced auto minimum grid sizing with `minmax(0,...)`, tuned the phone name size, increased key study labels, constrained the desktop drawing, and added useful no-JS navigation. Full-page captures now load lazy images explicitly, so blank deferred images are not mistaken for missing assets.
 4. Added keyboard-activation restraint and mobile anchor focus. Rebuilt and reran all static/browser tests. Inspected the revised [desktop hero](screenshots/final/hero-desktop.png), [mobile homepage](screenshots/final/home-mobile.png), and case-study screenshots including [ContextGuard mobile](screenshots/final/contextguard-mobile.png).
+5. After the owner requested stronger motion, added masked name entry, scroll wipes and path drawing, sticky work progress, restrained diagram drift and an original optional Three.js graph. Inspected the actual [3D hero](screenshots/motion/three-hero-desktop.png), [drawn project artwork](screenshots/motion/project-desktop.png), and [mobile SVG fallback](screenshots/motion/hero-mobile.png). All motion and static/core browser checks passed. The palette remains charcoal/ivory/copper.
 
 The screenshot annotations are these numbered observations/captions next to the saved evidence. No reference designer's artwork is published as a portfolio asset.
 
@@ -44,15 +50,15 @@ No Lighthouse score is claimed. These are median observations from three fresh-c
 
 | Metric | Original single-file site | Redesign |
 |---|---:|---:|
-| DOMContentLoaded | 286.2 ms | 61.3 ms |
-| First contentful paint | 328 ms | 220 ms |
-| Largest contentful paint | 328 ms | 220 ms |
-| Observed cumulative layout shift | 0 | 0.0 |
-| Initial observed transfer | 224,140 bytes | 116,895 bytes |
-| Idle script time over a one-second window | 7.272 ms | 0 ms |
-| Idle task time over a one-second window | 94.496 ms | 0.527 ms |
+| DOMContentLoaded | 253.3 ms | 184 ms |
+| First contentful paint | 296 ms | 220 ms |
+| Largest contentful paint | 296 ms | 220 ms |
+| Observed cumulative layout shift | 0 | 0 |
+| Initial observed transfer | 224,140 bytes | 670,126 bytes |
+| Script time over a one-second no-input window | 4.807 ms | 17.698 ms |
+| Task time over a one-second no-input window | 67.496 ms | 44.663 ms |
 
-The built homepage is 18,651 bytes, client JS 7,663 bytes, and CSS 29,687 bytes. The PDF is fetched only for download; there is no continuously running animation loop. Production improvements to evaluate on the actual host: Brotli/gzip, cache headers for versioned assets, the real device/network distribution, and a hosted Lighthouse run. Font display still uses swap, although no layout shift was observed in this controlled test.
+The built homepage is 28,921 bytes, minified client JS 10,069 bytes, and CSS 33,649 bytes. The optional desktop Three.js module is 542,760 bytes uncompressed. Its extra transfer and visible-scene rendering cost are an explicit tradeoff for the requested richer motion. Mobile/reduced-motion paths skip it. Rendering pauses offscreen, when the page is hidden, or through the diagram pause control. The PDF is fetched only for download. The hero name deliberately uncovers over roughly 1.2 seconds; paint metrics alone do not measure completion of the full motion sequence. Production improvements to evaluate: Brotli/gzip, cache headers for versioned assets, the real device/network distribution, and a hosted Lighthouse run. Font display uses swap; no layout shift was observed in this controlled test.
 
 ## Contrast and access limits
 
@@ -62,7 +68,7 @@ Principal pair ratios: warm white/charcoal 16.06:1; muted dark text 7.24:1; copp
 
 - All eight external reference sites were browser-blocked with `ERR_NETWORK_ACCESS_DENIED`. Source-derived findings and author descriptions are clearly identified in `reference-audit.md`; no current responsive or motion behavior is fabricated.
 - The private/blocked Hatchable comparison was not accessed. No access control was bypassed.
-- The owner's portrait could not be downloaded; no generated substitute was inserted. The website uses written identity/biography.
+- The owner's portrait was not replaced or fabricated; this motion revision leaves the written identity/biography intact.
 - `SITE_URL` defaults to localhost for preview. Before public deployment, set the actual origin and rebuild to update canonical, OG and sitemap URLs.
 - No production AWS/Sites/Hatchable deployment was performed. The redesign is isolated on `portfolio-v3-research-redesign` for review, without a main update.
 - README-backed project capabilities are not independent runtime validation of those applications. Diagrams are explicitly conceptual; the TermWise overview capture is labeled as actual UI.

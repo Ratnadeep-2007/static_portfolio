@@ -1,29 +1,34 @@
-# Centerpiece decision
+# Centerpiece decision — layered evidence graph
 
-## Three candidate directions
+## Revision context
 
-| Direction | User benefit | Cost / risk | Verdict |
-|---|---|---|---|
-| A. Evidence → context → decision | Explains the shared concern in Synora and ContextGuard: maintain provenance while information changes meaning | Needs clear illustrative labeling and synchronized controls | Selected |
-| B. Spatial architecture atlas | Could compare four real systems in one navigable space | Adds pan/zoom, touch, camera and keyboard complexity; duplicates work navigation | Rejected for the landing page |
-| C. Kinetic technical object | Strong initial visual identity | Risks repeating the old ornamental knot; engineering meaning would be secondary | Rejected |
+The initial research redesign selected a static SVG/HTML implementation of Evidence → Context → Decision. On 1 November 2026, the owner explicitly requested stronger scroll animation and Three.js effects. This revision keeps the same meaningful system model and adds an optional spatial renderer, rather than restoring an arbitrary spinning knot.
 
-## Why SVG and HTML, not Three.js
+## Candidate directions
 
-The model has three source records and three stages. A camera, depth buffer, raycaster, renderer and GPU loop do not improve the inspection task. Original SVG connections plus ordinary buttons make source selection and provenance legible. The single complex interaction is the source/stage explorer; other page effects are short visual feedback only.
+| Direction | Decision |
+|---|---|
+| A. Evidence → context → decision | Selected. Three source adapters connect through retained context to an inspectable decision. Spatial separation makes the three stages feel like layers of a system. |
+| B. Spatial project atlas | Rejected for this page: more camera/navigation complexity and duplicated project navigation. |
+| C. Kinetic decorative object | Rejected: motion alone would not explain Ratnadeep's engineering work. |
 
-Three.js examples for raycasting, fat lines and CSS2D labels were source-inspected, with their MIT license checked. OGL raycasting and its Unlicense metadata were also checked. These teach useful general principles, but no code or renderer is imported. There is no WebGL dependency, canvas fallback duplication, model download, third-party CDN or continuously scheduled animation frame.
+## Architecture and identity
 
-## Architecture
+src/system-scene.js is an original Three.js scene: five rectangular nodes, matte charcoal faces, copper edges, bounded signal packets, and a restrained pointer tilt. Canvas labels use the site's local DM Sans. It is the same source/context/decision model as the native SVG; button states, explanation and provenance stay in HTML. There is no stock model, chrome ball, glow, particle background, or third-party portfolio animation snippet.
 
-`src/content.mjs` defines three explicitly illustrative records, separate from project facts. `SystemExplorer` pre-renders an explanatory diagram, sources, stage buttons and initial text. `src/client.js` owns local `{source, stage}` state. Source selection resets to Evidence; stage selection changes the highlighted node, output text and source citation together. A decision shows the route back to the source. This is an educational state model, not a functioning AI service or a disguised product demo.
+Three.js 0.187.0 is pinned from the npm registry and licensed MIT. esbuild 0.28.2 is a pinned MIT build-time dependency. It bundles the required renderer into the local optional assets/system-scene.js module with legal comments retained. Full notices are distributed. No external CDN is required.
 
-Pointer, touch, native Enter/Space and optional arrow/Home/End navigation all activate the same code path. `aria-pressed` communicates selection; a polite atomic live region carries explanation. Static labels and project case studies remain useful without scripting. A no-JS notice explains the model and hides nonfunctional controls. No pointer movement or drag is intercepted, so scrolling remains native.
+## Loading and fallback
 
-## Motion and lifecycle
+The normal HTML/SVG interface renders first. On viewports above 700 px, with normal motion preference and the study visible, the optional module is requested after a 700 ms delay. It does not block native controls or require a preloader. Mobile and reduced-motion views use SVG without requesting the module. A missing WebGL2 context, failed module load, or context loss leaves/restores the SVG. The SVG carries a CSS signal while visible when normal motion is allowed; reduced motion is static.
 
-State changes are immediate. Optional 220 ms text emphasis and SVG stroke-color transitions run only after selection. Reduced motion removes them. No work is scheduled while idle, offscreen or hidden. Event listeners and observers have `pagehide` cleanup and BFCache remount support. There are no GPU resources to dispose of.
+## Lifecycle and budget
 
-## Budget
+- Orthographic camera and original low-poly box/edge geometry; no shadows, postprocessing, external image textures or lighting passes.
+- Device pixel ratio capped at 1.5 and approximately 30 fps while active.
+- Renderer pauses offscreen and while the document is hidden; only selection and diagram signals animate.
+- Materials, geometries, textures, event listeners and observers are disposed on page teardown and fallback switches.
+- Scroll motion outside the scene coalesces passive input events into one update frame; it does not self-schedule while idle.
+- Main client stays below 15 KB, CSS below 40 KB and homepage HTML below 35 KB. The optional minified Three.js module is about 542 KB uncompressed. That extra desktop transfer is an explicit tradeoff for the requested spatial motion, not an unchanged zero-dependency performance claim.
 
-Target homepage HTML under 35 KB, client JS under 15 KB, stylesheet under 40 KB, no runtime JavaScript packages, no initial bitmap hero, and fonts loaded from the same origin. The PDF is fetched only by a download action. Measurements are recorded in `qa-results.md`; targets are not presented as measured scores.
+Measurements and limitations belong in qa-results.md and the current JSON reports. A recorded browser preview demonstrates actual transitions; it is not shipped as an autoplay website asset.

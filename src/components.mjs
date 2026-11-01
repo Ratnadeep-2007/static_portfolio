@@ -1,6 +1,7 @@
 import { profile, projects, studyRecords } from './content.mjs';
-
-export const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+import { escape } from './html.mjs';
+import { projectDiagram } from './diagrams.mjs';
+export { escape } from './html.mjs';
 const arrow = '<span aria-hidden="true">↗</span>';
 export const sourceLink = (href, label, cls = '') => `<a class="${cls}" href="${escape(href)}" target="_blank" rel="noopener noreferrer">${label}${arrow}</a>`;
 
@@ -9,7 +10,7 @@ export function SiteHeader(base = './', detail = false) {
   <header class="site-header wrap" id="top">
     <a class="wordmark" href="${base}index.html" aria-label="Ratnadeep Patil, home"><span>r</span><i aria-hidden="true">/</i><span>p</span><small>RATNADEEP PATIL</small></a>
     <nav class="desktop-nav" aria-label="Main navigation"><a href="${detail ? base + 'index.html' : ''}#work" data-nav="work">Work <sup>04</sup></a><a href="${detail ? base + 'index.html' : ''}#about" data-nav="about">About</a><a href="${detail ? base + 'index.html' : ''}#contact" data-nav="contact">Contact ${arrow}</a></nav>
-    <noscript><style>.menu-toggle{display:none!important}@media(max-width:700px){.desktop-nav{display:flex;width:100%;gap:24px;padding-bottom:14px;font-size:12px}}.source-picker,.stage-picker{display:none!important}</style></noscript>
+    <noscript><style>.menu-toggle{display:none!important}@media(max-width:700px){.desktop-nav{display:flex;width:100%;gap:24px;padding-bottom:14px;font-size:12px}}.source-picker,.stage-picker,.motion-toggle{display:none!important}</style></noscript>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu <span aria-hidden="true">+</span></button>
     <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="${detail ? base + 'index.html' : ''}#work">Selected work <span>01</span></a><a href="${detail ? base + 'index.html' : ''}#about">About me <span>02</span></a><a href="${detail ? base + 'index.html' : ''}#contact">Get in touch ${arrow}</a><a href="${base}assets/ratnadeep-patil-resume.pdf" download>Download résumé ↓</a></nav>
   </header>`;
@@ -21,7 +22,7 @@ export function SocialLinks(cls = '') {
 
 export function SystemExplorer(base = './') {
   return `<section class="system-explorer" data-explorer aria-labelledby="system-title">
-    <div class="system-top"><span class="mono">INTERACTIVE SYSTEM STUDY</span><span class="system-id mono">001 / PROVENANCE</span></div>
+    <div class="system-top"><span class="mono">INTERACTIVE SYSTEM STUDY</span><span class="system-id mono">001 / PROVENANCE</span><button class="motion-toggle" type="button" aria-label="Pause diagram animation">Pause diagram</button></div>
     <div class="system-intro"><h2 id="system-title">A decision is only as useful<br>as its context.</h2><span aria-hidden="true" class="study-mark">↳</span></div>
     <div class="source-picker" role="group" aria-label="Choose an illustrative source">${studyRecords.map((r,i) => `<button type="button" data-source="${i}" aria-pressed="${i===0}"><span class="source-index">0${i+1}</span>${r.label}</button>`).join('')}</div>
     <div class="system-drawing">
@@ -44,15 +45,15 @@ export function SystemExplorer(base = './') {
 }
 
 export function HeroEditorial(base) {
-  return `<section class="hero wrap" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow"><span class="tiny-square" aria-hidden="true"></span>AI / ML &amp; AGENTIC DEVELOPMENT ENGINEER</p><h1 id="hero-title">Ratnadeep<br>Patil<span class="hero-period">.</span></h1><p class="hero-description">${profile.bio}</p>${SocialLinks('hero-socials')}<a href="#work" class="explore-link"><span class="down-circle" aria-hidden="true">↓</span>Selected work <span class="mono">01—04</span></a></div>${SystemExplorer(base)}<div class="hero-foot mono"><span>BASED IN INDIA</span><span>SOFTWARE, WITH A SOURCE OF TRUTH.</span><a href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div></section>`;
+  return `<section class="hero wrap" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow"><span class="tiny-square" aria-hidden="true"></span>AI / ML &amp; AGENTIC DEVELOPMENT ENGINEER</p><h1 id="hero-title"><span class="hero-line"><span>Ratnadeep</span></span><span class="hero-line"><span>Patil<span class="hero-period">.</span></span></span></h1><p class="hero-description">${profile.bio}</p>${SocialLinks('hero-socials')}<a href="#work" class="explore-link"><span class="down-circle" aria-hidden="true">↓</span>Selected work <span class="mono">01—04</span></a></div>${SystemExplorer(base)}<div class="hero-foot mono"><span>BASED IN INDIA</span><span>SOFTWARE, WITH A SOURCE OF TRUTH.</span><a href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div></section>`;
 }
 
 export function WorkIndex(base) {
-  return `<nav class="work-index" aria-label="Project index">${projects.map(p=>`<a href="${base}work/${p.id}/"><span class="mono">${p.index}</span><span>${escape(p.name)}</span>${arrow}</a>`).join('')}</nav>`;
+  return `<nav class="work-index" aria-label="Project index">${projects.map(p=>`<a href="${base}work/${p.id}/" data-project-link="${p.id}"><span class="mono">${p.index}</span><span>${escape(p.name)}</span>${arrow}</a>`).join('')}</nav>`;
 }
 
 export function ProjectShowcase(p,base) {
-  return `<article class="project-showcase ${Number(p.index)>2?'project-compact':''}" id="project-${p.id}" aria-labelledby="title-${p.id}"><div class="project-copy"><p class="eyebrow">${p.index} / ${escape(p.category)}</p><h3 id="title-${p.id}"><a href="${base}work/${p.id}/">${escape(p.name)}</a></h3><p class="project-short">${p.short}</p><p class="project-summary">${p.summary}</p><p class="project-stack mono">${p.stack.slice(0,4).map(escape).join(' / ')}</p><div class="project-actions"><a class="text-link" href="${base}work/${p.id}/">Explore the case study ${arrow}</a>${sourceLink(p.repo,'Source','quiet-link')}</div></div><a class="project-art" href="${base}work/${p.id}/" aria-label="Read ${escape(p.name)} case study"><img src="${base}assets/diagrams/${p.id}.svg" width="960" height="520" alt="${escape(p.architecture.join(' to '))}" loading="lazy" decoding="async"><span class="art-caption mono">ORIGINAL SYSTEM DIAGRAM <span aria-hidden="true">↗</span></span></a></article>`;
+  return `<article class="project-showcase ${Number(p.index)>2?'project-compact':''}" id="project-${p.id}" aria-labelledby="title-${p.id}"><div class="project-copy"><p class="eyebrow">${p.index} / ${escape(p.category)}</p><h3 id="title-${p.id}"><a href="${base}work/${p.id}/">${escape(p.name)}</a></h3><p class="project-short">${p.short}</p><p class="project-summary">${p.summary}</p><p class="project-stack mono">${p.stack.slice(0,4).map(escape).join(' / ')}</p><div class="project-actions"><a class="text-link" href="${base}work/${p.id}/">Explore the case study ${arrow}</a>${sourceLink(p.repo,'Source','quiet-link')}</div></div><a class="project-art" href="${base}work/${p.id}/" aria-label="Read ${escape(p.name)} case study"><div class="project-motion-graphic">${projectDiagram(p)}</div><span class="art-caption mono">ORIGINAL SYSTEM DIAGRAM <span aria-hidden="true">↗</span></span></a></article>`;
 }
 
 export function AboutEditorial(base) {

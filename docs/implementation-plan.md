@@ -9,3 +9,7 @@
 7. Publish source/assets/docs as one commit on `portfolio-v3-research-redesign` using GitHub Git-data tools, since local Git metadata is sandbox-restricted. Open a review PR. Preserve main. No production deployment.
 
 The brief's modular case-study architecture and separate PDF explicitly supersede the earlier single-file delivery request for this redesign. The former single-file version is preserved in main and in the local baseline snapshot.
+
+## Motion follow-up
+
+The owner's subsequent request for obvious scroll motion and Three.js effects supersedes the initial no-continuous-renderer preference for the visible study. The updated implementation uses a pinned optional desktop renderer, with pausing, offscreen/hidden-page suspension, and SVG fallbacks. It also adds scroll-entry choreography and project-progress feedback. This remains on the review branch; it does not authorize a production deployment or a main update.

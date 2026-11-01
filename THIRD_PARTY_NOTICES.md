@@ -1,6 +1,13 @@
 # Third-party notices and provenance
 
-No reference portfolio code, proprietary typeface, branded composition or creator artwork was copied. All site templates, the evidence explorer, interaction code, wordmark, favicon and architecture diagrams are original implementations for this portfolio. No third-party JavaScript runs in the deployed website.
+No reference portfolio code, proprietary typeface, branded composition or creator artwork was copied. All site templates, the evidence explorer, interaction code, wordmark, favicon and architecture diagrams are original implementations for this portfolio. The optional desktop renderer uses the locally bundled Three.js library; no third-party portfolio/demo snippet was copied.
+
+## Motion revision: distributed renderer and build tool
+
+- **Three.js 0.187.0**, MIT, copyright 2010–2026 three.js authors. Pinned in `package.json` and the lockfile; retrieved from the npm registry and checked against its included license. `src/system-scene.js` is an original geometry/interaction implementation. esbuild tree-shakes/minifies the required renderer into `assets/system-scene.js`, retaining legal comments. Full notice: `public/assets/licenses/Three-MIT.txt`. Upstream: https://github.com/mrdoob/three.js .
+- **esbuild 0.28.2**, MIT, copyright Evan Wallace. Build-time bundler only, pinned in the dev dependencies. The native build executable is not distributed in the static website. Notice retained at `public/assets/licenses/esbuild-MIT.txt`. Upstream: https://github.com/evanw/esbuild .
+
+The request for stronger visible motion supersedes the initial SVG-only decision documented in the first review. The SVG remains the no-WebGL/mobile/reduced-motion fallback. There is no video, remote texture, stock model or external script CDN in the page.
 
 ## Distributed fonts
 
@@ -19,12 +26,12 @@ The ContextGuard repository is MIT; no application code or concept artwork was c
 
 ## Investigated, not distributed
 
-- Three.js and the inspected interactive cubes, fat-lines and CSS2D-label examples: MIT, three.js authors. [License](https://github.com/mrdoob/three.js/blob/dev/LICENSE).
+- The inspected Three.js interactive-cubes, fat-lines and CSS2D-label example snippets were not copied. The library itself is now distributed under the notice above. [License](https://github.com/mrdoob/three.js/blob/dev/LICENSE).
 - Motion: MIT, Motion B.V. [License](https://github.com/motiondivision/motion/blob/main/LICENSE.md).
 - Lenis: MIT, darkroom.engineering. [License](https://github.com/darkroomengineering/lenis/blob/main/LICENSE).
 - OGL: package metadata specifies Unlicense. [Metadata](https://github.com/oframe/ogl/blob/master/package.json). No OGL source is included.
 
-Only general ideas were adapted: semantic labels synchronized with selected graphic state, and fast purposeful feedback. The code is independently authored; no external demo snippet is pasted. GSAP, React Three Fiber, Codrops assets, icon packages and stock images are not used.
+Only general demo ideas were adapted: semantic labels synchronized with selected graphic state, and purposeful feedback. Scene geometry and behaviors are independently authored; no external demo snippet is pasted. GSAP, React Three Fiber, Codrops assets, icon packages and stock images are not used.
 
 ## Research evidence
 

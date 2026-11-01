@@ -3,95 +3,95 @@
   "samples": {
     "baseline": [
       {
-        "domContentLoaded": 402.40000000596046,
-        "load": 402.69999998807907,
-        "fcp": 552,
-        "lcp": 552,
+        "domContentLoaded": 273.30000001192093,
+        "load": 273.59999999403954,
+        "fcp": 432,
+        "lcp": 432,
         "cls": 0,
         "transferBytes": 224140,
         "resourceCount": 0,
-        "idleScriptMsPerSecond": 8.66,
-        "idleTaskMsPerSecond": 100.941
+        "idleScriptMsPerSecond": 4.449,
+        "idleTaskMsPerSecond": 63.293
       },
       {
-        "domContentLoaded": 286.2000000178814,
-        "load": 286.5,
-        "fcp": 328,
-        "lcp": 328,
+        "domContentLoaded": 253.30000001192093,
+        "load": 253.59999999403954,
+        "fcp": 296,
+        "lcp": 296,
         "cls": 0,
         "transferBytes": 224140,
         "resourceCount": 0,
-        "idleScriptMsPerSecond": 6.7860000000000005,
-        "idleTaskMsPerSecond": 82.50699999999999
+        "idleScriptMsPerSecond": 4.807,
+        "idleTaskMsPerSecond": 67.496
       },
       {
-        "domContentLoaded": 281.40000000596046,
-        "load": 282.09999999403954,
-        "fcp": 304,
-        "lcp": 304,
+        "domContentLoaded": 252.09999999403954,
+        "load": 252.40000000596046,
+        "fcp": 292,
+        "lcp": 292,
         "cls": 0,
         "transferBytes": 224140,
         "resourceCount": 0,
-        "idleScriptMsPerSecond": 7.272,
-        "idleTaskMsPerSecond": 94.49600000000001
+        "idleScriptMsPerSecond": 5.016,
+        "idleTaskMsPerSecond": 72.007
       }
     ],
     "redesign": [
       {
-        "domContentLoaded": 61.29999998211861,
-        "load": 157.09999999403954,
+        "domContentLoaded": 181.90000000596046,
+        "load": 193.5,
+        "fcp": 300,
+        "lcp": 300,
+        "cls": 0,
+        "transferBytes": 670126,
+        "resourceCount": 7,
+        "idleScriptMsPerSecond": 18.887,
+        "idleTaskMsPerSecond": 46.411
+      },
+      {
+        "domContentLoaded": 184,
+        "load": 199.09999999403954,
         "fcp": 220,
         "lcp": 220,
-        "cls": 1.046770511831276e-05,
-        "transferBytes": 116895,
-        "resourceCount": 8,
-        "idleScriptMsPerSecond": 0,
-        "idleTaskMsPerSecond": 0.29
+        "cls": 0,
+        "transferBytes": 670126,
+        "resourceCount": 7,
+        "idleScriptMsPerSecond": 16.703,
+        "idleTaskMsPerSecond": 43.6
       },
       {
-        "domContentLoaded": 56.599999994039536,
-        "load": 149.2000000178814,
-        "fcp": 168,
-        "lcp": 168,
-        "cls": 1.046770511831276e-05,
-        "transferBytes": 116895,
-        "resourceCount": 8,
-        "idleScriptMsPerSecond": 0,
-        "idleTaskMsPerSecond": 1.035
-      },
-      {
-        "domContentLoaded": 178.7999999821186,
-        "load": 271.69999998807907,
-        "fcp": 288,
-        "lcp": 288,
-        "cls": 1.046770511831276e-05,
-        "transferBytes": 116895,
-        "resourceCount": 8,
-        "idleScriptMsPerSecond": 0,
-        "idleTaskMsPerSecond": 0.527
+        "domContentLoaded": 188.30000001192093,
+        "load": 201.09999999403954,
+        "fcp": 220,
+        "lcp": 220,
+        "cls": 0,
+        "transferBytes": 670126,
+        "resourceCount": 7,
+        "idleScriptMsPerSecond": 17.697999999999997,
+        "idleTaskMsPerSecond": 44.663000000000004
       }
     ]
   },
   "baseline_median": {
-    "domContentLoaded": 286.2,
-    "load": 286.5,
-    "fcp": 328,
-    "lcp": 328,
+    "domContentLoaded": 253.3,
+    "load": 253.6,
+    "fcp": 296,
+    "lcp": 296,
     "cls": 0,
     "transferBytes": 224140,
     "resourceCount": 0,
-    "idleScriptMsPerSecond": 7.272,
-    "idleTaskMsPerSecond": 94.496
+    "idleScriptMsPerSecond": 4.807,
+    "idleTaskMsPerSecond": 67.496
   },
   "redesign_median": {
-    "domContentLoaded": 61.3,
-    "load": 157.1,
+    "domContentLoaded": 184,
+    "load": 199.1,
     "fcp": 220,
     "lcp": 220,
-    "cls": 0.0,
-    "transferBytes": 116895,
-    "resourceCount": 8,
-    "idleScriptMsPerSecond": 0,
-    "idleTaskMsPerSecond": 0.527
+    "cls": 0,
+    "transferBytes": 670126,
+    "resourceCount": 7,
+    "idleScriptMsPerSecond": 17.698,
+    "idleTaskMsPerSecond": 44.663
   }
 }

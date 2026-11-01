@@ -4,6 +4,7 @@ import { resolve, dirname, join } from 'node:path';
 import { profile, projects } from '../src/content.mjs';
 import { layout, HomePage, ProjectDetail, ContactSection } from '../src/components.mjs';
 import { projectDiagram, ogDiagram } from '../src/diagrams.mjs';
+import { build as bundle } from 'esbuild';
 
 export const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 export const origin=(process.env.SITE_URL || 'http://localhost:4173').replace(/\/$/,'');
@@ -16,7 +17,8 @@ export async function build() {
   await mkdir(join(out,'assets/diagrams'),{recursive:true});
   await mkdir(join(out,'assets/og'),{recursive:true});
   await cp(join(root,'src/styles.css'),join(out,'assets/styles.css'));
-  await cp(join(root,'src/client.js'),join(out,'assets/client.js'));
+  await bundle({ entryPoints:[join(root,'src/client.js')], outfile:join(out,'assets/client.js'), minify:true, target:'es2020', legalComments:'inline' });
+  await bundle({ entryPoints:[join(root,'src/system-scene.js')], outfile:join(out,'assets/system-scene.js'), bundle:true, minify:true, format:'esm', platform:'browser', target:'es2020', legalComments:'inline' });
   const home=HomePage(origin);
   await writeFile(join(out,'index.html'),home);
   // A generated convenience entry, not the editable source. npm run dev serves dist.
@@ -34,7 +36,7 @@ export async function build() {
   await writeFile(join(out,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
   await writeFile(join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(p=>`<url><loc>${origin}${p.path}</loc></url>`).join('')}</urlset>\n`);
   await writeFile(join(out,'404.html'),layout({body:'<section class="case-hero wrap"><p class="eyebrow">404 / PAGE NOT FOUND</p><h1>This path ends here.</h1><p class="case-summary">The work is still one click away.</p><a class="text-link" href="/">Back to the portfolio ↗</a></section>',title:'Page not found — Ratnadeep Patil',description:'Return to Ratnadeep Patil’s portfolio.',origin,id:'home',path:'/404.html'}));
-  const report={generatedAt:new Date().toISOString(),origin,pages:pages.map(p=>p.path),homeBytes:(await stat(join(out,'index.html'))).size,clientBytes:(await stat(join(out,'assets/client.js'))).size,cssBytes:(await stat(join(out,'assets/styles.css'))).size,dependencies:0};
+  const report={generatedAt:new Date().toISOString(),origin,pages:pages.map(p=>p.path),homeBytes:(await stat(join(out,'index.html'))).size,clientBytes:(await stat(join(out,'assets/client.js'))).size,cssBytes:(await stat(join(out,'assets/styles.css'))).size,sceneBytes:(await stat(join(out,'assets/system-scene.js'))).size,dependencies:1,optionalRenderer:'three@0.187.0'};
   await writeFile(join(out,'build-report.json'),JSON.stringify(report,null,2)+'\n');
   // Keep a ready-to-host root copy as well as the canonical dist upload folder.
   await cp(join(out,'assets'),join(root,'assets'),{recursive:true});

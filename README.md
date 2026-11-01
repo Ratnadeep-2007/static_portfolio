@@ -1,6 +1,6 @@
 # Ratnadeep Patil — portfolio v3
 
-A static editorial portfolio with four source-backed case studies and an original interactive evidence-flow study. Plain pre-rendered HTML, modular CSS/JavaScript, and a dependency-free Node build. No backend, database, framework, runtime package, or external asset CDN.
+A static editorial portfolio with four source-backed case studies, scroll choreography, and an original interactive evidence-flow study. Plain pre-rendered HTML and modular CSS/JavaScript, with an optional locally bundled Three.js desktop scene. The build uses esbuild. No backend, database, UI framework, or external asset CDN.
 
 ## Run
 
@@ -40,7 +40,8 @@ For S3 static website hosting, upload `dist/` contents to the bucket root and us
 | `src/content.mjs` | Profile, skills, experience, ordered projects, source-backed case copy, illustrative study records |
 | `src/components.mjs` | Semantic shared page components and metadata |
 | `src/styles.css` | Tokens, layouts, states, mobile rules and reduced motion |
-| `src/client.js` | Source/stage selection, mobile menu, active navigation and copy-email feedback |
+| `src/client.js` | Source/stage selection, scroll motion, mobile menu, active navigation and copy-email feedback |
+| `src/system-scene.js` | Original optional Three.js graph, signal movement, source/stage synchronization and GPU cleanup |
 | `src/diagrams.mjs` | Original README-based architecture and social-image vector designs |
 | `public/assets/` | Local fonts/notices, PDF, real TermWise screenshot and social images |
 | `scripts/build.mjs` | Static output and SEO file generation |
@@ -50,9 +51,9 @@ The root `index.html` is a generated convenience copy. Edit `src/` and rebuild r
 
 ## Interactions
 
-Choose a meeting note, project brief or architecture note, then trace Evidence → Context → Decision. The selected graphic, explanation and source citation stay synchronized. Native buttons support pointer/touch/Enter/Space, with arrow/Home/End shortcuts. Records are explicitly illustrative; the portfolio does not call a model or pretend to run Synora.
+Choose a meeting note, project brief or architecture note, then trace Evidence → Context → Decision. On desktop, the local Three.js scene adds layered nodes, moving signal packets and restrained pointer response. The selected graphic, explanation and source citation stay synchronized. Native buttons support pointer/touch/Enter/Space, with arrow/Home/End shortcuts. Records are explicitly illustrative; the portfolio does not call a model or pretend to run Synora.
 
-All prose and navigation remain readable without JavaScript. Reduced motion removes intro/selection transitions. The study does not require WebGL or schedule continuous animation. Escape closes the mobile menu. Clipboard failure exposes a usable mailto alternative.
+The name reveals line by line. Scroll entry reveals the editorial sections, wipes in project artwork, and draws the architecture connectors. A sticky work index tracks the current project, and a reading-progress rule follows the page. The 3D scene renders at a capped rate only while visible and the page is active. Mobile, reduced-motion, unavailable WebGL and context loss use the SVG fallback. All prose and navigation remain readable without JavaScript. Escape closes the mobile menu. Clipboard failure exposes a usable mailto alternative.
 
 ## Check
 
@@ -61,11 +62,12 @@ npm run build
 npm test
 # While npm run preview is running:
 npm run test:browser
+python scripts/check-motion.py
 ```
 
 The browser checks use Python Playwright. Install it separately if needed with `python -m pip install -r requirements-dev.txt`. The default browser is installed Microsoft Edge on Windows. Set `BROWSER_EXECUTABLE` to your installed Chromium-compatible browser and `PORTFOLIO_TEST_URL` if you use a different preview origin. No browser is downloaded by the app build.
 
-`python scripts/generate-social-images.py` refreshes five PNG previews from the project's own generated SVG artwork; rebuild afterward. `python scripts/measure-performance.py` compares the preserved local baseline when that private research snapshot is available. Its recorded results and method are in `docs/performance-results.json`.
+`python scripts/generate-social-images.py` refreshes five PNG previews from the project's own generated SVG artwork; rebuild afterward. `python scripts/measure-performance.py` compares the preserved local baseline when that private research snapshot is available. Its recorded results and method are in `docs/performance-results.json`. `python scripts/record-motion.py` records an actual browser walkthrough to the local `motion-preview.webm`; that review video is not a website dependency.
 
 Research, design, motion, content preservation, testing limits and screenshots are documented in `docs/`. Font and screenshot licensing is in `THIRD_PARTY_NOTICES.md`.
 

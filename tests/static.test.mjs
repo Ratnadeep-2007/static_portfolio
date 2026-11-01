@@ -45,7 +45,8 @@ test('solid color and lean runtime constraints hold',async()=>{
   const css=await readFile('src/styles.css','utf8');
   const client=await readFile('src/client.js','utf8');
   assert.ok(!/(?:linear|radial|conic)-gradient\s*\(/i.test(css));
-  assert.ok(!/requestAnimationFrame|setInterval|eval\(/.test(client));
+  assert.ok(!/setInterval|eval\(/.test(client));
+  assert.ok(client.includes("{ passive: true }"));
   assert.ok(css.includes('prefers-reduced-motion'));
   assert.ok((await stat('dist/index.html')).size<35000);
   assert.ok((await stat('dist/assets/client.js')).size<15000);
