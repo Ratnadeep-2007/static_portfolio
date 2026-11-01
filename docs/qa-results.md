@@ -2,6 +2,8 @@
 
 Tested 1 November 2026 in headless Microsoft Edge through Python Playwright 1.62.0, against the running Node static server. This report distinguishes automated evidence, inspected screenshots, and unverified external conditions.
 
+Latest composition/motion revisions and repairs are described in [spatial-iteration.md](spatial-iteration.md). The current integration suite adds 60 spatial checks with no failures.
+
 ## Commands actually executed
 
 | Command | Observed result |
@@ -15,6 +17,7 @@ Tested 1 November 2026 in headless Microsoft Edge through Python Playwright 1.62
 | `npm.cmd test` | **6 test groups passed**, 0 failed |
 | `npm.cmd run test:browser` | **104 assertions passed**, 0 script errors, 0 unexpected HTTP failures |
 | `python scripts/check-motion.py` | **25 motion assertions passed**, 0 runtime errors |
+| `python scripts/check-spatial.py` | **60 spatial assertions passed**, zero failures, runtime errors or HTTP failures |
 | `python scripts/record-motion.py` | Actual browser walkthrough recorded locally as motion-preview.webm; it is not an autoplay site asset |
 | `python scripts/generate-social-images.py` | Five original PNG social images generated from the project's own SVGs |
 | `python scripts/check-contrast.py` | Six principal text/background pairs exceed 4.5:1 |
@@ -50,15 +53,15 @@ No Lighthouse score is claimed. These are median observations from three fresh-c
 
 | Metric | Original single-file site | Redesign |
 |---|---:|---:|
-| DOMContentLoaded | 253.3 ms | 184 ms |
-| First contentful paint | 296 ms | 220 ms |
-| Largest contentful paint | 296 ms | 220 ms |
+| DOMContentLoaded | 234.6 ms | 193.2 ms |
+| First contentful paint | 280 ms | 268 ms |
+| Largest contentful paint | 280 ms | 268 ms |
 | Observed cumulative layout shift | 0 | 0 |
-| Initial observed transfer | 224,140 bytes | 670,126 bytes |
-| Script time over a one-second no-input window | 4.807 ms | 17.698 ms |
-| Task time over a one-second no-input window | 67.496 ms | 44.663 ms |
+| Initial observed transfer | 224,140 bytes | 689,281 bytes |
+| Script time over a one-second no-input window | 5.65 ms | 21.142 ms |
+| Task time over a one-second no-input window | 77.826 ms | 48.468 ms |
 
-The built homepage is 28,921 bytes, minified client JS 10,069 bytes, and CSS 33,649 bytes. The optional desktop Three.js module is 542,760 bytes uncompressed. Its extra transfer and visible-scene rendering cost are an explicit tradeoff for the requested richer motion. Mobile/reduced-motion paths skip it. Rendering pauses offscreen, when the page is hidden, or through the diagram pause control. The PDF is fetched only for download. The hero name deliberately uncovers over roughly 1.2 seconds; paint metrics alone do not measure completion of the full motion sequence. Production improvements to evaluate: Brotli/gzip, cache headers for versioned assets, the real device/network distribution, and a hosted Lighthouse run. Font display uses swap; no layout shift was observed in this controlled test.
+The built homepage is 25,579 bytes, minified client JS 13,666 bytes, and CSS 44,109 bytes. The optional desktop Three.js module is 550,625 bytes uncompressed. Its extra transfer and visible-scene rendering cost are an explicit tradeoff for the requested richer motion. Mobile/reduced-motion paths skip it. Rendering pauses offscreen, when the page is hidden, or through the diagram pause control. The PDF is fetched only for download. The hero name deliberately uncovers over roughly 1.2 seconds; paint metrics alone do not measure completion of the full motion sequence. Production improvements to evaluate: Brotli/gzip, cache headers for versioned assets, the real device/network distribution, and a hosted Lighthouse run. Font display uses swap; no layout shift was observed in this controlled test.
 
 ## Contrast and access limits
 
@@ -70,5 +73,5 @@ Principal pair ratios: warm white/charcoal 16.06:1; muted dark text 7.24:1; copp
 - The private/blocked Hatchable comparison was not accessed. No access control was bypassed.
 - The owner's portrait was not replaced or fabricated; this motion revision leaves the written identity/biography intact.
 - `SITE_URL` defaults to localhost for preview. Before public deployment, set the actual origin and rebuild to update canonical, OG and sitemap URLs.
-- No production AWS/Sites/Hatchable deployment was performed. The redesign is isolated on `portfolio-v3-research-redesign` for review, without a main update.
+- The accepted redesign is on GitHub main and has been hosted on Hatchable. Deployment receipts and visibility are reported separately from these local tests. No AWS deployment is claimed.
 - README-backed project capabilities are not independent runtime validation of those applications. Diagrams are explicitly conceptual; the TermWise overview capture is labeled as actual UI.

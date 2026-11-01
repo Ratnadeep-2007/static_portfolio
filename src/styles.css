@@ -218,18 +218,7 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400}
 @keyframes intro{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes selection{from{opacity:.5;transform:translateY(3px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-/* First visual QA revision: fit the whole hero and keep its labels readable. */
 .hero-copy{min-width:0}
-.hero{grid-template-columns:minmax(0,1.03fr) minmax(0,1fr)}
-.source-picker button{font-size:11px}
-.stage-picker button{font-size:11px}
-.system-top .mono{font-size:8px}
-.explorer-detail>.mono,.source-citation{font-size:8px}
-.system-bottom{font-size:9px}
-@media(min-width:701px){.system-drawing svg{max-height:230px}.system-explorer{margin-block:0}.explorer-detail{min-height:128px}}
-@media(min-width:701px) and (max-width:1150px){.source-picker button{font-size:9px}.system-top .mono{font-size:7px}.system-bottom{font-size:8px}.stage-picker button{font-size:10px}}
-@media(max-width:700px){.hero{grid-template-columns:minmax(0,1fr)}.hero h1{font-size:clamp(58px,18.2vw,112px)}.source-picker button{font-size:10px}.system-top .mono{font-size:7px}.system-bottom{font-size:8px}.system-bottom>p{max-width:190px}}
-@media(max-width:359px){.hero h1{font-size:18.2vw}.source-picker button{font-size:9px}.system-top .mono{font-size:6px}.about-grid h2{font-size:42px}}
 .actual-interface{margin-top:40px}
 .actual-interface img{max-height:580px;object-fit:contain;background:#f7f7f1;border:1px solid var(--paper-line)}
 /* Motion direction: copper carries the signal; ivory carries the reading. */
@@ -281,3 +270,95 @@ em{font-family:Georgia,'Times New Roman',serif;font-weight:400}
 .motion-toggle:disabled{color:var(--muted);border-color:var(--line)}
 .motion-paused .source-route path,.motion-paused .decision-route,.motion-paused .provenance-return{animation-play-state:paused!important}
 @media(max-width:900px){.system-top .system-id{display:none}.motion-toggle{margin-left:auto}}
+
+/* Spatial edition: an open stage and distinct project compositions. */
+.hero{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:42px;padding-top:24px}
+.hero-copy{padding-block:36px}
+.hero h1{font-size:clamp(74px,8.2vw,125px)}
+.hero-description{font-size:clamp(18px,1.6vw,24px);line-height:1.5;max-width:400px}
+.hero-copy .eyebrow{font-size:10px;line-height:1.8;max-width:360px}
+.system-explorer{background:transparent;border:0}
+.system-top{border:0;padding:0;min-height:44px}
+.system-top .mono{font-size:10px}.system-id{display:none}
+.system-intro{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%)}
+.system-drawing{height:430px;padding:0;margin-block:8px}
+.system-drawing>svg{max-height:360px}
+.source-picker{margin:0;border:0;border-top:1px solid var(--line)}
+.source-picker button{font-size:12px;border:0;min-height:44px}
+.source-picker button[aria-pressed=true]{background:var(--paper);color:var(--deep)}
+.stage-picker{margin:0;gap:0;border-top:0}
+.stage-picker button{font-size:12px;min-height:44px}
+.stage-picker button>span,.source-index{font-size:9px}
+.explorer-detail{padding:16px 0;min-height:114px}
+.explorer-detail>.mono,.source-citation{font-size:9px}
+.explorer-statement{font-size:14px;min-height:44px}
+.system-bottom{padding:8px 0;font-size:10px;border-top:1px solid var(--line)}
+.motion-toggle{font-size:10px;min-height:44px;border:0;padding-right:0}
+.hero-foot{margin-top:0;font-size:10px;padding-block:22px}
+em{font:inherit;font-weight:600;color:var(--copper)}
+.work-section em{color:#805233}
+.work-heading h2{font-size:clamp(60px,7.8vw,112px);line-height:.98}
+.work-heading>p{font-size:17px}
+.work-index a{font-size:13px;min-height:62px}
+.project-showcase{min-height:620px;padding:80px 0;gap:6%;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);perspective:1400px;scroll-margin-top:75px}
+.project-showcase:nth-child(even){grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+.project-showcase:nth-child(even) .project-art{grid-column:1;grid-row:1}
+.project-showcase:nth-child(even) .project-copy{grid-column:2;grid-row:1}
+.project-copy h3{font-size:clamp(40px,4.8vw,70px);line-height:1.02}
+.project-copy>.eyebrow{font-size:10px;line-height:1.7}
+.project-summary{font-size:15px;line-height:1.8}
+.project-stack{font-size:10px}
+.project-art{background:#24211d;border:1px solid #494037;box-shadow:0 24px 40px -32px #17161466}
+.art-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:26px 30px 0;color:var(--paper)}
+.art-heading>span:first-child{font-size:clamp(23px,2.9vw,43px);font-weight:600;letter-spacing:-.06em;line-height:1.1;max-width:85%}
+.art-number{font:12px var(--mono);color:var(--copper)}
+.project-motion-graphic{aspect-ratio:960/560}
+.project-motion-graphic text{font:16px var(--mono)}
+.project-motion-graphic .small-art-text{font-size:12px}
+.project-motion-graphic .guard-word{font:600 166px var(--sans);letter-spacing:-12px}
+.art-caption{font-size:9px;padding:16px 24px}
+.art-open{font:500 12px var(--sans);color:var(--white);transition:translate 300ms}
+.project-art:hover .art-open{translate:4px -2px}
+.interface-window{margin:28px 30px 30px;background:var(--paper);border-radius:5px;overflow:hidden;rotate:-3deg;transition:rotate 600ms var(--ease)}
+.project-art:hover .interface-window{rotate:0deg}
+.interface-window img{width:100%;height:auto;display:block}
+.window-bar{display:flex;justify-content:space-between;padding:12px;background:#d7cfc2;color:var(--charcoal);font:8px var(--mono);gap:12px}
+.about-grid h2{font-size:clamp(42px,5.5vw,80px)}
+.about-grid h2 em{color:var(--copper)}
+.about-lead{font-size:25px}
+.toolkit dd{font-size:14px}.toolkit dt{font-size:10px}
+.experience-date{font-size:10px}.experience-detail{font-size:13px}
+.contact-heading h2{font-size:clamp(66px,9vw,136px);line-height:1}
+@media(prefers-reduced-motion:no-preference){
+ .motion-in-view .voice-bars rect{transform-box:fill-box;transform-origin:center;animation:voice-beat 1.8s calc(var(--bar)*-90ms) ease-in-out infinite alternate}
+ .motion-in-view .sheet-front{animation:memory-float 4s ease-in-out infinite alternate}
+ .motion-in-view .evidence-source{animation:memory-float 4.5s ease-in-out infinite alternate-reverse}
+ .motion-in-view .identity-mark{stroke-dasharray:700;animation:identity-trace 7s ease-in-out infinite}
+ .motion-in-view .ledger-paper{animation:memory-float 4s ease-in-out infinite alternate}
+}
+@keyframes voice-beat{from{scale:1 .35}to{scale:1 1}}
+@keyframes memory-float{from{translate:0 0}to{translate:8px -12px}}
+@keyframes identity-trace{0%,100%{stroke-dashoffset:700}45%,75%{stroke-dashoffset:0}}
+@media(min-width:1600px){.system-drawing{height:480px}}
+@media(max-width:1100px){.hero{gap:28px}.system-drawing{height:360px}.hero-description{font-size:18px}.source-picker button,.stage-picker button{font-size:10px}.hero-foot{font-size:8px}.project-showcase{min-height:540px;gap:30px}.project-copy h3{font-size:43px}.project-summary{font-size:14px}.art-caption{font-size:8px}.art-heading{padding:20px 22px 0}.system-bottom{font-size:9px}}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.hero-copy{padding:20px 0 0}.hero h1{font-size:clamp(64px,13.8vw,108px);margin-top:22px}.hero-description{font-size:21px;max-width:470px}.system-explorer{max-width:660px;width:100%;margin:0 auto}.system-drawing{height:380px}.hero-foot{margin-top:16px}.hero-foot>span:nth-child(2){display:none}.hero-copy .eyebrow{font-size:10px}.project-showcase,.project-showcase:nth-child(even){grid-template-columns:1fr;display:flex;flex-direction:column;align-items:stretch;gap:30px;min-height:0;padding:55px 0}.project-copy h3{font-size:clamp(38px,8vw,64px)}.project-summary{max-width:100%;font-size:15px}.project-stack{font-size:10px}.project-copy>.eyebrow{font-size:10px}.art-heading>span:first-child{font-size:34px}.work-index a{font-size:11px}}
+@media(max-width:700px){.system-drawing{height:auto;min-height:205px;margin-block:16px}.system-drawing>svg{max-height:none}.source-picker button,.stage-picker button{font-size:11px}.system-top .mono{font-size:9px}.motion-toggle{font-size:9px}.explorer-detail{min-height:128px}.explorer-statement{font-size:15px}.hero-description{font-size:20px}.hero-foot{font-size:8px}.hero{gap:30px}.hero h1{font-size:clamp(58px,18.2vw,112px)}.work-heading h2{font-size:64px}.project-art{box-shadow:none}.art-caption{font-size:7px;padding:13px 17px}.art-open{font-size:11px}.art-heading>span:first-child{font-size:28px}.interface-window{margin:20px 20px 25px}.window-bar{font-size:6px}.about-lead{font-size:22px}.toolkit dd{font-size:12px}}
+
+/* Second visual pass: coherent mobile artwork and an unclipped contact heading. */
+.system-drawing .source-node rect{fill:#eee9e1;stroke:#b5a794}
+.system-drawing .source-node text{fill:#171614;font-size:10px}
+.system-drawing .source-node.active rect{fill:#dba77a;stroke:#dba77a}
+.system-drawing .source-node.active text{fill:#171614}
+.system-drawing .context-node rect{fill:#dba77a;stroke:#dba77a}
+.system-drawing .context-node text{fill:#171614}
+.system-drawing .decision-node rect{fill:#eee9e1;stroke:#eee9e1}
+.system-drawing .decision-node text{fill:#171614}
+.system-drawing .context-node>path{stroke:#67462f}
+.system-drawing .graph-guides{opacity:.3}
+.system-drawing .source-route path{stroke:#8b7259}
+@media(max-width:700px){
+ .hero{padding-top:18px;gap:17px}.hero-copy{padding-top:8px}.hero-copy .eyebrow{font-size:9px}
+ .hero h1{margin-block:18px}.hero-description{font-size:18px;line-height:1.55}
+ .hero-socials{margin-top:18px}.explore-link{margin-top:15px}.system-drawing{min-height:190px;margin-block:2px}
+ .contact-heading{display:block}.contact-heading h2{font-size:clamp(38px,10.6vw,68px)}.contact-arrow{display:inline-block;font-size:60px;line-height:1;margin-top:15px}
+}

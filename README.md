@@ -18,7 +18,7 @@ npm run build
 npm run preview
 ```
 
-The production upload is the **contents of `dist/`**. It includes the homepage, four case-study directories, local fonts, original SVG diagrams, social images and the owner's unchanged PDF résumé. The new brief requests modular case studies and a separate PDF, superseding the earlier single-file format. Main retains the previous single-file version until this branch is reviewed and merged.
+The production upload is the **contents of `dist/`**. It includes the homepage, four case-study directories, local fonts, original SVG diagrams, social images and the owner's unchanged PDF résumé. The new brief requests modular case studies and a separate PDF, superseding the earlier single-file format. The redesign is on main; Hatchable hosts the static output separately.
 
 ## Public origin and S3
 
@@ -41,6 +41,8 @@ For S3 static website hosting, upload `dist/` contents to the bucket root and us
 | `src/components.mjs` | Semantic shared page components and metadata |
 | `src/styles.css` | Tokens, layouts, states, mobile rules and reduced motion |
 | `src/client.js` | Source/stage selection, scroll motion, mobile menu, active navigation and copy-email feedback |
+| `src/artworks.mjs` | Distinct original project artwork and the actual TermWise interface capture |
+| `src/scroll-story.js` / `.css` | Natural-scroll copper typography sequence, pointer tilt and reduced-motion fallback |
 | `src/system-scene.js` | Original optional Three.js graph, signal movement, source/stage synchronization and GPU cleanup |
 | `src/diagrams.mjs` | Original README-based architecture and social-image vector designs |
 | `public/assets/` | Local fonts/notices, PDF, real TermWise screenshot and social images |
@@ -74,3 +76,7 @@ Research, design, motion, content preservation, testing limits and screenshots a
 ## Delivery status
 
 Work is isolated to `portfolio-v3-research-redesign`; review the pull request before merging. No main commit or live production deployment is part of this task. External reference browsing was blocked by executor network policy, so the research report distinguishes accessible source-derived findings from unverified interactions. No portrait was fabricated or silently changed.
+
+## Spatial revision
+
+The hero now assembles physical evidence sheets around a layered copper processor. A full-width Build / Connect / Automate scroll sequence leads into four distinct project visuals. See `docs/spatial-iteration.md` for the review loop and repairs. Run `python scripts/check-spatial.py` for 60 additional integration assertions, including real motion/pause frame comparison.

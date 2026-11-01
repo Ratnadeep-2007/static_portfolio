@@ -50,7 +50,8 @@ test('solid color and lean runtime constraints hold',async()=>{
   assert.ok(css.includes('prefers-reduced-motion'));
   assert.ok((await stat('dist/index.html')).size<35000);
   assert.ok((await stat('dist/assets/client.js')).size<15000);
-  assert.ok((await stat('dist/assets/styles.css')).size<40000);
+  // Includes the standalone scroll-story choreography, minified by the build.
+  assert.ok((await stat('dist/assets/styles.css')).size<45000);
 });
 test('project priority, excluded web experience and local font notices preserved',async()=>{
   assert.deepEqual(projects.map(p=>p.id),['synora','contextguard','termwise','face-web-blockchain']);

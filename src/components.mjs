@@ -1,6 +1,7 @@
 import { profile, projects, studyRecords } from './content.mjs';
 import { escape } from './html.mjs';
 import { projectDiagram } from './diagrams.mjs';
+import { projectArtwork } from './artworks.mjs';
 export { escape } from './html.mjs';
 const arrow = '<span aria-hidden="true">↗</span>';
 export const sourceLink = (href, label, cls = '') => `<a class="${cls}" href="${escape(href)}" target="_blank" rel="noopener noreferrer">${label}${arrow}</a>`;
@@ -24,7 +25,7 @@ export function SystemExplorer(base = './') {
   return `<section class="system-explorer" data-explorer aria-labelledby="system-title">
     <div class="system-top"><span class="mono">INTERACTIVE SYSTEM STUDY</span><span class="system-id mono">001 / PROVENANCE</span><button class="motion-toggle" type="button" aria-label="Pause diagram animation">Pause diagram</button></div>
     <div class="system-intro"><h2 id="system-title">A decision is only as useful<br>as its context.</h2><span aria-hidden="true" class="study-mark">↳</span></div>
-    <div class="source-picker" role="group" aria-label="Choose an illustrative source">${studyRecords.map((r,i) => `<button type="button" data-source="${i}" aria-pressed="${i===0}"><span class="source-index">0${i+1}</span>${r.label}</button>`).join('')}</div>
+
     <div class="system-drawing">
       <svg viewBox="0 0 540 255" role="img" aria-labelledby="flow-title flow-desc"><title id="flow-title">Source, context, decision</title><desc id="flow-desc">Three illustrative sources connect to shared project context and a decision. The buttons below explain each stage.</desc>
         <g class="graph-guides" fill="none" stroke="#393530" stroke-width="1"><path d="M24 24h492M24 232h492"/><path d="M36 12v232M504 12v232"/></g>
@@ -36,6 +37,7 @@ export function SystemExplorer(base = './') {
         <path class="provenance-return" d="M451 152v57H88v-3"/><text x="299" y="202" class="return-label">TRACE BACK TO SOURCE</text>
       </svg>
     </div>
+    <div class="source-picker" role="group" aria-label="Choose an illustrative source">${studyRecords.map((r,i) => `<button type="button" data-source="${i}" aria-pressed="${i===0}"><span class="source-index">0${i+1}</span>${r.label}</button>`).join('')}</div>
     <div class="stage-picker" role="group" aria-label="Trace the evidence flow"><button type="button" data-stage="0" aria-pressed="true"><span>01</span> Evidence</button><button type="button" data-stage="1" aria-pressed="false"><span>02</span> Context</button><button type="button" data-stage="2" aria-pressed="false"><span>03</span> Decision</button></div>
     <div class="explorer-detail" aria-live="polite" aria-atomic="true"><p class="mono" data-kind>${studyRecords[0].kind}</p><p class="explorer-statement" data-statement>“${studyRecords[0].quote}”</p><p class="source-citation" data-citation>${studyRecords[0].source}</p></div>
     <div class="system-bottom"><p>Illustrative records. Select a source, then trace its path.</p><a href="${base}work/synora/" aria-label="Read the Synora case study">Related work ${arrow}</a></div>
@@ -49,11 +51,16 @@ export function HeroEditorial(base) {
 }
 
 export function WorkIndex(base) {
-  return `<nav class="work-index" aria-label="Project index">${projects.map(p=>`<a href="${base}work/${p.id}/" data-project-link="${p.id}"><span class="mono">${p.index}</span><span>${escape(p.name)}</span>${arrow}</a>`).join('')}</nav>`;
+  return `<nav class="work-index" aria-label="Project index">${projects.map(p=>`<a href="#project-${p.id}" data-project-link="${p.id}"><span class="mono">${p.index}</span><span>${escape(p.name)}</span>${arrow}</a>`).join('')}</nav>`;
 }
 
 export function ProjectShowcase(p,base) {
-  return `<article class="project-showcase ${Number(p.index)>2?'project-compact':''}" id="project-${p.id}" aria-labelledby="title-${p.id}"><div class="project-copy"><p class="eyebrow">${p.index} / ${escape(p.category)}</p><h3 id="title-${p.id}"><a href="${base}work/${p.id}/">${escape(p.name)}</a></h3><p class="project-short">${p.short}</p><p class="project-summary">${p.summary}</p><p class="project-stack mono">${p.stack.slice(0,4).map(escape).join(' / ')}</p><div class="project-actions"><a class="text-link" href="${base}work/${p.id}/">Explore the case study ${arrow}</a>${sourceLink(p.repo,'Source','quiet-link')}</div></div><a class="project-art" href="${base}work/${p.id}/" aria-label="Read ${escape(p.name)} case study"><div class="project-motion-graphic">${projectDiagram(p)}</div><span class="art-caption mono">ORIGINAL SYSTEM DIAGRAM <span aria-hidden="true">↗</span></span></a></article>`;
+  return `<article class="project-showcase" id="project-${p.id}" aria-labelledby="title-${p.id}"><div class="project-copy"><p class="eyebrow">${p.index} / ${escape(p.category)}</p><h3 id="title-${p.id}"><a href="${base}work/${p.id}/">${escape(p.name)}</a></h3><p class="project-short">${p.short}</p><p class="project-summary">${p.summary}</p><p class="project-stack mono">${p.stack.slice(0,4).map(escape).join(' / ')}</p><div class="project-actions"><a class="text-link" href="${base}work/${p.id}/">Explore the case study ${arrow}</a>${sourceLink(p.repo,'Source','quiet-link')}</div></div><a class="project-art visual-${p.id}" href="${base}work/${p.id}/" aria-label="Read ${escape(p.name)} case study">${projectArtwork(p,base)}<span class="art-caption mono">${p.id==='termwise'?'ACTUAL APPLICATION INTERFACE':'ORIGINAL CONCEPTUAL ARTWORK'}<span class="art-open">View project ↗</span></span></a></article>`;
+}
+
+export function ScrollStory() {
+  const steps=[['Build.','AI agents that turn an intent into a working flow.'],['Connect.','Scattered knowledge, with its sources still attached.'],['Automate.','The work between tools, from input to action.']];
+  return `<section class="scroll-story" data-scroll-story aria-label="My approach"><div class="story-stage"><div class="story-meta"><span class="story-label">FROM INTENT TO ACTION</span><span class="story-count" aria-hidden="true">01 / 03</span></div><span class="story-index" data-story-index aria-hidden="true">01</span><div class="story-steps">${steps.map(([word,description],i)=>`<div class="story-step" data-step="${i}"><h2 class="story-word">${word}</h2><p class="story-description">${description}</p></div>`).join('')}</div><div class="story-progress" aria-hidden="true"></div></div></section>`;
 }
 
 export function AboutEditorial(base) {
@@ -89,6 +96,6 @@ export function layout({body,title,description,base='./',path='/',origin,id='hom
 
 export function HomePage(origin) {
   const base='./';
-  const body=`${HeroEditorial(base)}<section class="work-section" id="work" aria-labelledby="work-title"><div class="wrap"><div class="section-top"><p class="eyebrow">01 / SELECTED WORK</p><span class="mono">FOUR PROJECTS. FOUR DIFFERENT QUESTIONS.</span></div><div class="work-heading"><h2 id="work-title">The work,<br><em>in context.</em></h2><p>From a conversation to shared memory.<br>From a document to a decision.</p></div>${WorkIndex(base)}<div class="project-list">${projects.map(p=>ProjectShowcase(p,base)).join('')}</div></div></section>${AboutEditorial(base)}${ContactSection()}`;
+  const body=`${HeroEditorial(base)}${ScrollStory()}<section class="work-section" id="work" aria-labelledby="work-title"><div class="wrap"><div class="section-top"><p class="eyebrow">01 / SELECTED WORK</p><span class="mono">FOUR PROJECTS. FOUR DIFFERENT QUESTIONS.</span></div><div class="work-heading"><h2 id="work-title">The work,<br><em>in context.</em></h2><p>From a conversation to shared memory.<br>From a document to a decision.</p></div>${WorkIndex(base)}<div class="project-list">${projects.map(p=>ProjectShowcase(p,base)).join('')}</div></div></section>${AboutEditorial(base)}${ContactSection()}`;
   return layout({body,title:'Ratnadeep Patil — AI & Agentic Systems Engineer',description:profile.bio,origin});
 }

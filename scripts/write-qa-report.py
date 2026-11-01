@@ -6,10 +6,13 @@ browser=json.loads((root/'docs/browser-results.json').read_text())
 perf=json.loads((root/'docs/performance-results.json').read_text())
 build=json.loads((root/'dist/build-report.json').read_text())
 motion=json.loads((root/'docs/motion-results.json').read_text())
+spatial=json.loads((root/'docs/spatial-results.json').read_text())
 before=perf['baseline_median'];after=perf['redesign_median']
 text=f'''# QA and delivery evidence
 
 Tested 1 November 2026 in headless Microsoft Edge through Python Playwright 1.62.0, against the running Node static server. This report distinguishes automated evidence, inspected screenshots, and unverified external conditions.
+
+Latest composition/motion revisions and repairs are described in [spatial-iteration.md](spatial-iteration.md). The current integration suite adds {len(spatial["checks"])} spatial checks with no failures.
 
 ## Commands actually executed
 
@@ -24,6 +27,7 @@ Tested 1 November 2026 in headless Microsoft Edge through Python Playwright 1.62
 | `npm.cmd test` | **6 test groups passed**, 0 failed |
 | `npm.cmd run test:browser` | **{len(browser['checks'])} assertions passed**, 0 script errors, 0 unexpected HTTP failures |
 | `python scripts/check-motion.py` | **{len(motion['checks'])} motion assertions passed**, 0 runtime errors |
+| `python scripts/check-spatial.py` | **{len(spatial["checks"])} spatial assertions passed**, zero failures, runtime errors or HTTP failures |
 | `python scripts/record-motion.py` | Actual browser walkthrough recorded locally as motion-preview.webm; it is not an autoplay site asset |
 | `python scripts/generate-social-images.py` | Five original PNG social images generated from the project's own SVGs |
 | `python scripts/check-contrast.py` | Six principal text/background pairs exceed 4.5:1 |
@@ -79,7 +83,7 @@ Principal pair ratios: warm white/charcoal 16.06:1; muted dark text 7.24:1; copp
 - The private/blocked Hatchable comparison was not accessed. No access control was bypassed.
 - The owner's portrait was not replaced or fabricated; this motion revision leaves the written identity/biography intact.
 - `SITE_URL` defaults to localhost for preview. Before public deployment, set the actual origin and rebuild to update canonical, OG and sitemap URLs.
-- No production AWS/Sites/Hatchable deployment was performed. The redesign is isolated on `portfolio-v3-research-redesign` for review, without a main update.
+- The accepted redesign is on GitHub main and has been hosted on Hatchable. Deployment receipts and visibility are reported separately from these local tests. No AWS deployment is claimed.
 - README-backed project capabilities are not independent runtime validation of those applications. Diagrams are explicitly conceptual; the TermWise overview capture is labeled as actual UI.
 '''
 (root/'docs/qa-results.md').write_text(text,encoding='utf-8')

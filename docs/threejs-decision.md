@@ -14,7 +14,7 @@ The initial research redesign selected a static SVG/HTML implementation of Evide
 
 ## Architecture and identity
 
-src/system-scene.js is an original Three.js scene: five rectangular nodes, matte charcoal faces, copper edges, bounded signal packets, and a restrained pointer tilt. Canvas labels use the site's local DM Sans. It is the same source/context/decision model as the native SVG; button states, explanation and provenance stay in HTML. There is no stock model, chrome ball, glow, particle background, or third-party portfolio animation snippet.
+src/system-scene.js is an original Three.js scene: three ivory evidence sheets, a lit matte copper processor with separate fins and pins, an output document, bounded signal packets, assembly motion and pointer tilt. Canvas labels use the site's local DM Sans. It is the same source/context/decision model as the native SVG; button states, explanation and provenance stay in HTML. There is no stock model, chrome ball, glow, particle background, or third-party portfolio animation snippet.
 
 Three.js 0.187.0 is pinned from the npm registry and licensed MIT. esbuild 0.28.2 is a pinned MIT build-time dependency. It bundles the required renderer into the local optional assets/system-scene.js module with legal comments retained. Full notices are distributed. No external CDN is required.
 
@@ -25,7 +25,7 @@ The normal HTML/SVG interface renders first. On viewports above 700 px, with nor
 ## Lifecycle and budget
 
 - Orthographic camera and original low-poly box/edge geometry; no shadows, postprocessing, external image textures or lighting passes.
-- Device pixel ratio capped at 1.5 and approximately 30 fps while active.
+- Device pixel ratio capped at 2 and approximately 30 fps while active.
 - Renderer pauses offscreen and while the document is hidden; only selection and diagram signals animate.
 - Materials, geometries, textures, event listeners and observers are disposed on page teardown and fallback switches.
 - Scroll motion outside the scene coalesces passive input events into one update frame; it does not self-schedule while idle.

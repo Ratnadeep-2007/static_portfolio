@@ -17,14 +17,14 @@ with sync_playwright() as p:
     page.locator('[data-source="1"]').click();page.wait_for_timeout(600)
     page.locator('[data-stage="1"]').click();page.wait_for_timeout(600)
     page.locator('[data-stage="2"]').click();page.wait_for_timeout(1600)
-    for _ in range(5):page.mouse.wheel(0,180);page.wait_for_timeout(220)
-    page.wait_for_timeout(1600)
-    for _ in range(4):page.mouse.wheel(0,160);page.wait_for_timeout(220)
-    page.wait_for_timeout(1600)
-    for _ in range(5):page.mouse.wheel(0,200);page.wait_for_timeout(180)
-    page.wait_for_timeout(1300)
-    for _ in range(6):page.mouse.wheel(0,200);page.wait_for_timeout(180)
-    page.wait_for_timeout(1200)
+    for fraction in [0,.49,.96]:
+        page.locator('[data-scroll-story]').evaluate('(el,f)=>scrollTo({top:scrollY+el.getBoundingClientRect().top+(el.offsetHeight-innerHeight)*f,behavior:"smooth"})',fraction)
+        page.wait_for_timeout(1700)
+    for project in ['synora','contextguard','termwise','face-web-blockchain']:
+        page.locator('#project-'+project).evaluate('(el)=>scrollTo({top:scrollY+el.getBoundingClientRect().top-90,behavior:"smooth"})')
+        page.wait_for_timeout(1800)
+        page.locator('#project-'+project+' .project-art').hover(position={'x':120,'y':180})
+        page.wait_for_timeout(650)
     page.locator('#contact').scroll_into_view_if_needed();page.wait_for_timeout(1400)
     video=page.video
     context.close()

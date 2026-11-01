@@ -4,7 +4,7 @@ import { resolve, dirname, join } from 'node:path';
 import { profile, projects } from '../src/content.mjs';
 import { layout, HomePage, ProjectDetail, ContactSection } from '../src/components.mjs';
 import { projectDiagram, ogDiagram } from '../src/diagrams.mjs';
-import { build as bundle } from 'esbuild';
+import { build as bundle, transform } from 'esbuild';
 
 export const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 export const origin=(process.env.SITE_URL || 'http://localhost:4173').replace(/\/$/,'');
@@ -16,8 +16,9 @@ export async function build() {
   await cp(join(root,'public'),out,{recursive:true});
   await mkdir(join(out,'assets/diagrams'),{recursive:true});
   await mkdir(join(out,'assets/og'),{recursive:true});
-  await cp(join(root,'src/styles.css'),join(out,'assets/styles.css'));
-  await bundle({ entryPoints:[join(root,'src/client.js')], outfile:join(out,'assets/client.js'), minify:true, target:'es2020', legalComments:'inline' });
+  const styles=(await readFile(join(root,'src/styles.css'),'utf8'))+'\n'+(await readFile(join(root,'src/scroll-story.css'),'utf8'));
+  await writeFile(join(out,'assets/styles.css'),(await transform(styles,{loader:'css',minify:true})).code);
+  await bundle({ entryPoints:[join(root,'src/client.js')], outfile:join(out,'assets/client.js'), bundle:true, minify:true, target:'es2020', legalComments:'inline' });
   await bundle({ entryPoints:[join(root,'src/system-scene.js')], outfile:join(out,'assets/system-scene.js'), bundle:true, minify:true, format:'esm', platform:'browser', target:'es2020', legalComments:'inline' });
   const home=HomePage(origin);
   await writeFile(join(out,'index.html'),home);

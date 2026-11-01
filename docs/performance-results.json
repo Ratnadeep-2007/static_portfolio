@@ -3,95 +3,95 @@
   "samples": {
     "baseline": [
       {
-        "domContentLoaded": 273.30000001192093,
-        "load": 273.59999999403954,
-        "fcp": 432,
-        "lcp": 432,
+        "domContentLoaded": 241.90000000596046,
+        "load": 242.19999998807907,
+        "fcp": 360,
+        "lcp": 360,
         "cls": 0,
         "transferBytes": 224140,
         "resourceCount": 0,
-        "idleScriptMsPerSecond": 4.449,
-        "idleTaskMsPerSecond": 63.293
+        "idleScriptMsPerSecond": 5.747999999999999,
+        "idleTaskMsPerSecond": 77.826
       },
       {
-        "domContentLoaded": 253.30000001192093,
-        "load": 253.59999999403954,
-        "fcp": 296,
-        "lcp": 296,
+        "domContentLoaded": 234.59999999403954,
+        "load": 234.89999997615814,
+        "fcp": 280,
+        "lcp": 280,
         "cls": 0,
         "transferBytes": 224140,
         "resourceCount": 0,
-        "idleScriptMsPerSecond": 4.807,
-        "idleTaskMsPerSecond": 67.496
+        "idleScriptMsPerSecond": 4.796,
+        "idleTaskMsPerSecond": 69.956
       },
       {
-        "domContentLoaded": 252.09999999403954,
-        "load": 252.40000000596046,
-        "fcp": 292,
-        "lcp": 292,
+        "domContentLoaded": 229.90000000596046,
+        "load": 230.2000000178814,
+        "fcp": 268,
+        "lcp": 268,
         "cls": 0,
         "transferBytes": 224140,
         "resourceCount": 0,
-        "idleScriptMsPerSecond": 5.016,
-        "idleTaskMsPerSecond": 72.007
+        "idleScriptMsPerSecond": 5.65,
+        "idleTaskMsPerSecond": 82.791
       }
     ],
     "redesign": [
       {
-        "domContentLoaded": 181.90000000596046,
-        "load": 193.5,
-        "fcp": 300,
-        "lcp": 300,
+        "domContentLoaded": 174.69999998807907,
+        "load": 187.69999998807907,
+        "fcp": 288,
+        "lcp": 288,
         "cls": 0,
-        "transferBytes": 670126,
+        "transferBytes": 689281,
         "resourceCount": 7,
-        "idleScriptMsPerSecond": 18.887,
-        "idleTaskMsPerSecond": 46.411
+        "idleScriptMsPerSecond": 18.698,
+        "idleTaskMsPerSecond": 39.55200000000001
       },
       {
-        "domContentLoaded": 184,
-        "load": 199.09999999403954,
+        "domContentLoaded": 193.19999998807907,
+        "load": 207.7999999821186,
         "fcp": 220,
         "lcp": 220,
         "cls": 0,
-        "transferBytes": 670126,
+        "transferBytes": 689281,
         "resourceCount": 7,
-        "idleScriptMsPerSecond": 16.703,
-        "idleTaskMsPerSecond": 43.6
+        "idleScriptMsPerSecond": 21.142,
+        "idleTaskMsPerSecond": 48.468
       },
       {
-        "domContentLoaded": 188.30000001192093,
-        "load": 201.09999999403954,
-        "fcp": 220,
-        "lcp": 220,
+        "domContentLoaded": 207.2999999821186,
+        "load": 244.19999998807907,
+        "fcp": 268,
+        "lcp": 268,
         "cls": 0,
-        "transferBytes": 670126,
+        "transferBytes": 689281,
         "resourceCount": 7,
-        "idleScriptMsPerSecond": 17.697999999999997,
-        "idleTaskMsPerSecond": 44.663000000000004
+        "idleScriptMsPerSecond": 26.96,
+        "idleTaskMsPerSecond": 64.55900000000001
       }
     ]
   },
   "baseline_median": {
-    "domContentLoaded": 253.3,
-    "load": 253.6,
-    "fcp": 296,
-    "lcp": 296,
+    "domContentLoaded": 234.6,
+    "load": 234.9,
+    "fcp": 280,
+    "lcp": 280,
     "cls": 0,
     "transferBytes": 224140,
     "resourceCount": 0,
-    "idleScriptMsPerSecond": 4.807,
-    "idleTaskMsPerSecond": 67.496
+    "idleScriptMsPerSecond": 5.65,
+    "idleTaskMsPerSecond": 77.826
   },
   "redesign_median": {
-    "domContentLoaded": 184,
-    "load": 199.1,
-    "fcp": 220,
-    "lcp": 220,
+    "domContentLoaded": 193.2,
+    "load": 207.8,
+    "fcp": 268,
+    "lcp": 268,
     "cls": 0,
-    "transferBytes": 670126,
+    "transferBytes": 689281,
     "resourceCount": 7,
-    "idleScriptMsPerSecond": 17.698,
-    "idleTaskMsPerSecond": 44.663
+    "idleScriptMsPerSecond": 21.142,
+    "idleTaskMsPerSecond": 48.468
   }
 }

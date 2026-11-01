@@ -1,3 +1,5 @@
+import { initScrollStory } from './scroll-story.js';
+
 (() => {
   'use strict';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -184,6 +186,7 @@
       entries.forEach(entry => entry.target.classList.toggle('motion-in-view', entry.isIntersecting));
     }, { threshold: .08 });
     if (explorer) visibility.observe(explorer);
+    document.querySelectorAll('.project-art').forEach(el => visibility.observe(el));
     function paint() {
       frame = 0;
       const height = document.documentElement.scrollHeight - innerHeight;
@@ -269,7 +272,7 @@
   }
 
   let cleanups = [];
-  function mount() { cleanups = [initMenu(), initExplorer(), initCopy(), initNavigation(), initMotion(), initDiagramPlayback(), initThreeScene()]; }
+  function mount() { cleanups = [initMenu(), initExplorer(), initCopy(), initNavigation(), initMotion(), initDiagramPlayback(), initThreeScene(), initScrollStory()]; }
   mount();
   window.addEventListener('pagehide', () => { cleanups.forEach(fn => fn()); cleanups = []; });
   window.addEventListener('pageshow', event => { if (event.persisted) mount(); });
