@@ -20,6 +20,16 @@ npm run preview
 
 The production upload is the **contents of `dist/`**. It includes the homepage, four case-study directories, local fonts, original SVG diagrams, social images and the owner's unchanged PDF résumé. The new brief requests modular case studies and a separate PDF, superseding the earlier single-file format. Main retains the previous single-file version until this branch is reviewed and merged.
 
+## Hatchable production deployment
+
+The site is deployed at **https://ratnadeep-systems.hatchable.site** from the reviewed portfolio V3 design. Build the exact metadata for this host with:
+
+```sh
+npm run verify:hatchable
+```
+
+The command generates `dist/`, runs the original static tests, and checks canonical links, Open Graph images, sitemap entries and required assets. Copy the **contents** of `dist/` into the existing Hatchable project's `public/` directory, then publish the project through Hatchable. See [Hatchable deployment guide](docs/hatchable-deployment.md) for verification and visibility controls. Keep the GitHub `main` branch unchanged until the redesign is reviewed.
+
 ## Public origin and S3
 
 Build with the real deployment URL before production so canonical, Open Graph and sitemap URLs match your host:
@@ -71,4 +81,4 @@ Research, design, motion, content preservation, testing limits and screenshots a
 
 ## Delivery status
 
-Work is isolated to `portfolio-v3-research-redesign`; review the pull request before merging. No main commit or live production deployment is part of this task. External reference browsing was blocked by executor network policy, so the research report distinguishes accessible source-derived findings from unverified interactions. No portrait was fabricated or silently changed.
+The original redesign is isolated to `portfolio-v3-research-redesign`. Branch `portfolio-v4-hatchable-sync` adds the verified Hatchable production build and ready-to-host metadata. Hatchable version 4 was deployed on 1 November 2026, using the V3 redesign from commit `659535823b8ce8cf61127a531de6444b8755f035`. The Hatchable project is currently **personal/private**; the owner must switch visibility to Public in Hatchable settings for anonymous access. Neither branch changes `main`. External reference browsing was blocked by executor network policy, so the research report distinguishes accessible source-derived findings from unverified interactions. No portrait was fabricated or silently changed.

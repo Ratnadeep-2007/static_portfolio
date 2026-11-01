@@ -4,12 +4,17 @@
   "private": true,
   "type": "module",
   "description": "A source-backed static portfolio with an original evidence-flow study.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "node scripts/build.mjs",
     "preview": "node scripts/serve.mjs",
     "test": "node --test tests/static.test.mjs",
-    "test:browser": "python scripts/check-browser.py"
+    "test:browser": "python scripts/check-browser.py",
+    "build:hatchable": "node scripts/build-hatchable.mjs",
+    "test:hatchable": "node --test tests/hatchable.test.mjs",
+    "verify:hatchable": "npm run build:hatchable && npm test && npm run test:hatchable"
   }
 }
