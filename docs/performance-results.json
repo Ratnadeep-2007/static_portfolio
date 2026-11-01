@@ -1,0 +1,97 @@
+{
+  "method": "Headless Edge, 1440x900, fresh context per sample, localhost uncompressed assets, 3 samples per version. No Lighthouse score is claimed.",
+  "samples": {
+    "baseline": [
+      {
+        "domContentLoaded": 402.40000000596046,
+        "load": 402.69999998807907,
+        "fcp": 552,
+        "lcp": 552,
+        "cls": 0,
+        "transferBytes": 224140,
+        "resourceCount": 0,
+        "idleScriptMsPerSecond": 8.66,
+        "idleTaskMsPerSecond": 100.941
+      },
+      {
+        "domContentLoaded": 286.2000000178814,
+        "load": 286.5,
+        "fcp": 328,
+        "lcp": 328,
+        "cls": 0,
+        "transferBytes": 224140,
+        "resourceCount": 0,
+        "idleScriptMsPerSecond": 6.7860000000000005,
+        "idleTaskMsPerSecond": 82.50699999999999
+      },
+      {
+        "domContentLoaded": 281.40000000596046,
+        "load": 282.09999999403954,
+        "fcp": 304,
+        "lcp": 304,
+        "cls": 0,
+        "transferBytes": 224140,
+        "resourceCount": 0,
+        "idleScriptMsPerSecond": 7.272,
+        "idleTaskMsPerSecond": 94.49600000000001
+      }
+    ],
+    "redesign": [
+      {
+        "domContentLoaded": 61.29999998211861,
+        "load": 157.09999999403954,
+        "fcp": 220,
+        "lcp": 220,
+        "cls": 1.046770511831276e-05,
+        "transferBytes": 116895,
+        "resourceCount": 8,
+        "idleScriptMsPerSecond": 0,
+        "idleTaskMsPerSecond": 0.29
+      },
+      {
+        "domContentLoaded": 56.599999994039536,
+        "load": 149.2000000178814,
+        "fcp": 168,
+        "lcp": 168,
+        "cls": 1.046770511831276e-05,
+        "transferBytes": 116895,
+        "resourceCount": 8,
+        "idleScriptMsPerSecond": 0,
+        "idleTaskMsPerSecond": 1.035
+      },
+      {
+        "domContentLoaded": 178.7999999821186,
+        "load": 271.69999998807907,
+        "fcp": 288,
+        "lcp": 288,
+        "cls": 1.046770511831276e-05,
+        "transferBytes": 116895,
+        "resourceCount": 8,
+        "idleScriptMsPerSecond": 0,
+        "idleTaskMsPerSecond": 0.527
+      }
+    ]
+  },
+  "baseline_median": {
+    "domContentLoaded": 286.2,
+    "load": 286.5,
+    "fcp": 328,
+    "lcp": 328,
+    "cls": 0,
+    "transferBytes": 224140,
+    "resourceCount": 0,
+    "idleScriptMsPerSecond": 7.272,
+    "idleTaskMsPerSecond": 94.496
+  },
+  "redesign_median": {
+    "domContentLoaded": 61.3,
+    "load": 157.1,
+    "fcp": 220,
+    "lcp": 220,
+    "cls": 0.0,
+    "transferBytes": 116895,
+    "resourceCount": 8,
+    "idleScriptMsPerSecond": 0,
+    "idleTaskMsPerSecond": 0.527
+  }
+}
