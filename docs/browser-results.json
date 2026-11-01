@@ -1,0 +1,322 @@
+{
+  "accessed": "2026-11-01T15:13:04.153815+00:00",
+  "base": "http://localhost:4173",
+  "checks": [
+    "HTTP 200 /",
+    "one h1 /",
+    "no duplicate IDs /",
+    "named links and controls /",
+    "no overflow / 320",
+    "no overflow / 390",
+    "no overflow / 768",
+    "no overflow / 1024",
+    "no overflow / 1440",
+    "no overflow / 1920",
+    "HTTP 200 /work/synora/",
+    "one h1 /work/synora/",
+    "no duplicate IDs /work/synora/",
+    "named links and controls /work/synora/",
+    "no overflow /work/synora/ 320",
+    "no overflow /work/synora/ 390",
+    "no overflow /work/synora/ 768",
+    "no overflow /work/synora/ 1024",
+    "no overflow /work/synora/ 1440",
+    "no overflow /work/synora/ 1920",
+    "HTTP 200 /work/contextguard/",
+    "one h1 /work/contextguard/",
+    "no duplicate IDs /work/contextguard/",
+    "named links and controls /work/contextguard/",
+    "no overflow /work/contextguard/ 320",
+    "no overflow /work/contextguard/ 390",
+    "no overflow /work/contextguard/ 768",
+    "no overflow /work/contextguard/ 1024",
+    "no overflow /work/contextguard/ 1440",
+    "no overflow /work/contextguard/ 1920",
+    "HTTP 200 /work/termwise/",
+    "one h1 /work/termwise/",
+    "no duplicate IDs /work/termwise/",
+    "named links and controls /work/termwise/",
+    "no overflow /work/termwise/ 320",
+    "no overflow /work/termwise/ 390",
+    "no overflow /work/termwise/ 768",
+    "no overflow /work/termwise/ 1024",
+    "no overflow /work/termwise/ 1440",
+    "no overflow /work/termwise/ 1920",
+    "HTTP 200 /work/face-web-blockchain/",
+    "one h1 /work/face-web-blockchain/",
+    "no duplicate IDs /work/face-web-blockchain/",
+    "named links and controls /work/face-web-blockchain/",
+    "no overflow /work/face-web-blockchain/ 320",
+    "no overflow /work/face-web-blockchain/ 390",
+    "no overflow /work/face-web-blockchain/ 768",
+    "no overflow /work/face-web-blockchain/ 1024",
+    "no overflow /work/face-web-blockchain/ 1440",
+    "no overflow /work/face-web-blockchain/ 1920",
+    "local fonts loaded",
+    "source selection 0",
+    "stage 0/0",
+    "provenance retained 0/0",
+    "stage 0/1",
+    "provenance retained 0/1",
+    "stage 0/2",
+    "provenance retained 0/2",
+    "source selection 1",
+    "stage 1/0",
+    "provenance retained 1/0",
+    "stage 1/1",
+    "provenance retained 1/1",
+    "stage 1/2",
+    "provenance retained 1/2",
+    "source selection 2",
+    "stage 2/0",
+    "provenance retained 2/0",
+    "stage 2/1",
+    "provenance retained 2/1",
+    "stage 2/2",
+    "provenance retained 2/2",
+    "decision explanation for brief",
+    "arrow-key source selection",
+    "End-key stage selection",
+    "Space activates native control",
+    "case link navigates",
+    "browser back returns home",
+    "explorer works after browser back",
+    "case anchor works",
+    "native clipboard feedback is actionable",
+    "copy success message",
+    "copied correct email",
+    "copy failure actionable",
+    "mailto preserved",
+    "original PDF download",
+    "mobile menu expanded",
+    "mobile menu first-link focus",
+    "Escape closes menu",
+    "Escape returns focus",
+    "mobile link closes menu",
+    "mobile anchor navigates",
+    "mobile anchor moves focus into content",
+    "reduced motion CSS",
+    "reduced motion still interactive",
+    "touch source/stage controls",
+    "no-JS navigation visible",
+    "no-JS controls hidden",
+    "no-JS prose and fallback visible",
+    "WebGL-disabled interaction",
+    "slow-network page readable",
+    "slow-network explorer usable",
+    "zero script errors",
+    "zero unexpected HTTP failures"
+  ],
+  "viewports": [
+    {
+      "route": "/",
+      "width": 320,
+      "height": 740
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "route": "/",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "route": "/work/synora/",
+      "width": 320,
+      "height": 740
+    },
+    {
+      "route": "/work/synora/",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "/work/synora/",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "/work/synora/",
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "route": "/work/synora/",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "route": "/work/synora/",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "route": "/work/contextguard/",
+      "width": 320,
+      "height": 740
+    },
+    {
+      "route": "/work/contextguard/",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "/work/contextguard/",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "/work/contextguard/",
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "route": "/work/contextguard/",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "route": "/work/contextguard/",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "route": "/work/termwise/",
+      "width": 320,
+      "height": 740
+    },
+    {
+      "route": "/work/termwise/",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "/work/termwise/",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "/work/termwise/",
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "route": "/work/termwise/",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "route": "/work/termwise/",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "route": "/work/face-web-blockchain/",
+      "width": 320,
+      "height": 740
+    },
+    {
+      "route": "/work/face-web-blockchain/",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "route": "/work/face-web-blockchain/",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "route": "/work/face-web-blockchain/",
+      "width": 1024,
+      "height": 900
+    },
+    {
+      "route": "/work/face-web-blockchain/",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "route": "/work/face-web-blockchain/",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "errors": [],
+  "http_failures": [],
+  "native_clipboard_feedback": "Email address copied.",
+  "slow_network": {
+    "latencyMs": 150,
+    "downloadBytesPerSecond": 204800,
+    "timing": {
+      "name": "http://localhost:4173/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 1099.2999999821186,
+      "navigationId": 5779,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentType": "text/html",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 3.4000000059604645,
+      "domainLookupStart": 3.4000000059604645,
+      "domainLookupEnd": 3.4000000059604645,
+      "connectStart": 3.4000000059604645,
+      "secureConnectionStart": 0,
+      "connectEnd": 3.4000000059604645,
+      "requestStart": 6.199999988079071,
+      "responseStart": 8.799999982118607,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 8.799999982118607,
+      "responseEnd": 302.7999999821186,
+      "transferSize": 29206,
+      "encodedBodySize": 28906,
+      "decodedBodySize": 28906,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 304.90000000596046,
+      "domContentLoadedEventStart": 820.4000000059605,
+      "domContentLoadedEventEnd": 820.5,
+      "domComplete": 1098.9000000059605,
+      "loadEventStart": 1099.2999999821186,
+      "loadEventEnd": 1099.2999999821186,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "high"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+docs/research/
+artifacts/
+folio/
+__pycache__/
+*.pyc
+Ratnadeep-Portfolio.zip
+Ratnadeep_Patil_CV.pdf
+portfolio-v3.zip
+motion-preview.webm

@@ -1,0 +1,23 @@
+{
+  "name": "ratnadeep-portfolio",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A source-backed static portfolio with an original evidence-flow study.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node --test tests/static.test.mjs",
+    "test:browser": "python scripts/check-browser.py"
+  },
+  "dependencies": {
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
