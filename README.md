@@ -1,6 +1,6 @@
 # Ratnadeep Patil — portfolio v3
 
-A static editorial portfolio with four source-backed case studies and an original interactive evidence-flow study. Plain pre-rendered HTML, modular CSS/JavaScript, and a dependency-free Node build. No backend, database, framework, runtime package, or external asset CDN.
+A static editorial portfolio with four source-backed case studies and an original interactive evidence-flow study. The Signal Atlas redesign adds graphite/mineral/signal-lime styling, a responsive perspective Canvas 2D animation and meaningful progressive scroll reveals. Plain pre-rendered HTML, modular CSS/JavaScript, and a dependency-free Node build. No backend, database, framework, runtime package, or external asset CDN.
 
 ## Run
 
@@ -51,6 +51,7 @@ For S3 static website hosting, upload `dist/` contents to the bucket root and us
 | `src/components.mjs` | Semantic shared page components and metadata |
 | `src/styles.css` | Tokens, layouts, states, mobile rules and reduced motion |
 | `src/client.js` | Source/stage selection, mobile menu, active navigation and copy-email feedback |
+| `src/motion.js` | Perspective topology, pause control, reduced-motion handling, scroll reveals |
 | `src/diagrams.mjs` | Original README-based architecture and social-image vector designs |
 | `public/assets/` | Local fonts/notices, PDF, real TermWise screenshot and social images |
 | `scripts/build.mjs` | Static output and SEO file generation |
@@ -62,7 +63,7 @@ The root `index.html` is a generated convenience copy. Edit `src/` and rebuild r
 
 Choose a meeting note, project brief or architecture note, then trace Evidence → Context → Decision. The selected graphic, explanation and source citation stay synchronized. Native buttons support pointer/touch/Enter/Space, with arrow/Home/End shortcuts. Records are explicitly illustrative; the portfolio does not call a model or pretend to run Synora.
 
-All prose and navigation remain readable without JavaScript. Reduced motion removes intro/selection transitions. The study does not require WebGL or schedule continuous animation. Escape closes the mobile menu. Clipboard failure exposes a usable mailto alternative.
+All prose and navigation remain readable without JavaScript. Reduced motion removes intro/selection transitions. The study does not require WebGL. The original 3D-perspective Canvas 2D motion only runs when the explorer is visible, respects reduced motion and tab visibility, and has a pause/play control; the original semantic SVG diagram stays readable without JS. Escape closes the mobile menu. Clipboard failure exposes a usable mailto alternative.
 
 ## Check
 

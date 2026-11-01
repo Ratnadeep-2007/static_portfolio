@@ -35,7 +35,7 @@ test('sitemap and robots point to the live Hatchable host', async () => {
 
 test('critical static assets and unchanged CV remain present', async () => {
   for (const name of [
-    'assets/styles.css', 'assets/client.js', 'assets/favicon.svg',
+    'assets/styles.css', 'assets/client.js', 'assets/motion.js', 'assets/favicon.svg',
     'assets/fonts/dm-sans-400.woff2', 'assets/fonts/jetbrains-mono.woff2',
     'assets/ratnadeep-patil-resume.pdf', 'assets/og/home.png',
     ...projects.map(p => `assets/diagrams/${p.id}.svg`)
