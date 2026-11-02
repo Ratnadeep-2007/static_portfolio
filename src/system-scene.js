@@ -17,21 +17,21 @@ export function createSystemScene(root) {
   try { renderer = new WebGLRenderer({ canvas, context, alpha: true, antialias: true }); }
   catch { return null; }
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
-  renderer.setClearColor(0x171614, 0); renderer.outputColorSpace = SRGBColorSpace;
+  renderer.setClearColor(0x09070d, 0); renderer.outputColorSpace = SRGBColorSpace;
   canvas.setAttribute('aria-hidden', 'true'); host.append(canvas);
   const resources = new Set();
   const own = resource => { resources.add(resource); return resource; };
   const scene = new Scene();
-  scene.add(new AmbientLight(0xfff4e5, 2.2));
-  const keyLight = new DirectionalLight(0xffead4, 3.2); keyLight.position.set(-4, 6, 10); scene.add(keyLight);
+  scene.add(new AmbientLight(0xeee0ff, 2.2));
+  const keyLight = new DirectionalLight(0xdcc5ff, 3.2); keyLight.position.set(-4, 6, 10); scene.add(keyLight);
   const sideLight = new DirectionalLight(0xb7b4ae, 1.5); sideLight.position.set(6, -2, 2); scene.add(sideLight);
   const assembly = new Group(); scene.add(assembly);
   const camera = new OrthographicCamera(-6, 6, 4.5, -4.5, .1, 70);
   camera.position.set(0, 0, 20);
-  const copper = 0xdba77a, ink = 0x24201b, ivory = 0xeee9e1;
+  const copper = 0x8651d4, ink = 0x171021, ivory = 0xeae4f5;
   const material = (color, metalness = .05) => own(new MeshStandardMaterial({ color, roughness: .76, metalness }));
-  const edgeMaterial = own(new LineBasicMaterial({ color: 0xf0c59f, transparent: true, opacity: .7 }));
-  const mutedLine = 0x76604c;
+  const edgeMaterial = own(new LineBasicMaterial({ color: 0xbb90ff, transparent: true, opacity: .7 }));
+  const mutedLine = 0x70568c;
   function box(parent, w, h, d, fill, position = [0, 0, 0], edges = false) {
     const geometry = own(new BoxGeometry(w, h, d));
     const mesh = new Mesh(geometry, fill); mesh.position.set(...position); parent.add(mesh);
@@ -47,7 +47,7 @@ export function createSystemScene(root) {
     const mesh = new Mesh(own(new PlaneGeometry(width, height)), faceMaterial); mesh.position.z = depth; parent.add(mesh);
   }
   const sheetMaterial = material(ivory);
-  const sheetEdgeMaterial = material(0xbeb5a8);
+  const sheetEdgeMaterial = material(0xc9b9dd);
   const copperMaterial = material(copper, .35);
   const darkMaterial = material(ink, .2);
   const positions = [[-3.75, 1.72, .2], [-3.9, .05, .55], [-3.6, -1.6, .12]];
@@ -58,12 +58,12 @@ export function createSystemScene(root) {
     box(paper, 2.24, 1.37, .065, sheetEdgeMaterial, [-.08, -.075, -.10]);
     const surface = box(paper, 2.24, 1.37, .07, sheetMaterial);
     face(paper, 2.24, 1.37, .041, (pen, w, h) => {
-      pen.fillStyle = '#5b493a'; pen.font = '400 34px "JetBrains Mono", monospace';
+      pen.fillStyle = '#453359'; pen.font = '400 34px "JetBrains Mono", monospace';
       pen.fillText('0' + (i + 1) + '  /  SOURCE', 66, 76);
-      pen.fillStyle = '#24201b'; pen.font = '600 94px "DM Sans", sans-serif'; pen.fillText(labels[i], 66, 177);
+      pen.fillStyle = '#171021'; pen.font = '600 94px "DM Sans", sans-serif'; pen.fillText(labels[i], 66, 177);
       pen.fillStyle = '#a69b8d';
       [0, 1, 2].forEach(n => pen.fillRect(66, 244 + n * 45, [w * .71, w * .62, w * .40][n], 10));
-      pen.fillStyle = '#99714e'; pen.fillRect(66, h - 82, 65, 13);
+      pen.fillStyle = '#653c96'; pen.fillRect(66, h - 82, 65, 13);
       pen.font = '400 27px "JetBrains Mono", monospace'; pen.fillText('EVIDENCE RETAINED', 153, h - 62);
     });
     return { group: paper, surface, rest: new Vector3(...position), rotation: paper.rotation.z };
@@ -79,9 +79,9 @@ export function createSystemScene(root) {
   box(processor, 2.08, 2.10, .26, darkMaterial, [0, 0, .45], true);
   box(processor, 1.88, 1.9, .13, copperMaterial, [0, 0, .66]);
   face(processor, 1.88, 1.9, .733, (pen, w, h) => {
-    pen.fillStyle = '#39291e'; pen.font = '400 38px "JetBrains Mono", monospace'; pen.fillText('SOURCE → SYSTEM', 66, 93);
+    pen.fillStyle = '#1c102c'; pen.font = '400 38px "JetBrains Mono", monospace'; pen.fillText('SOURCE → SYSTEM', 66, 93);
     pen.font = '600 126px "DM Sans", sans-serif'; pen.fillText('CONTEXT', 62, 380);
-    pen.strokeStyle = '#67462f'; pen.lineWidth = 3; pen.strokeRect(66, h - 188, w - 132, 92);
+    pen.strokeStyle = '#38264f'; pen.lineWidth = 3; pen.strokeRect(66, h - 188, w - 132, 92);
     pen.font = '400 37px "JetBrains Mono", monospace'; pen.fillText('LINK / RETAIN / REASON', 100, h - 130);
   });
   // Short physical pins make the processor read as hardware rather than a UI card.
@@ -94,13 +94,13 @@ export function createSystemScene(root) {
   box(decision, 2.25, 2.90, .11, sheetEdgeMaterial, [.12, -.12, -.17]);
   box(decision, 2.25, 2.90, .16, sheetMaterial);
   face(decision, 2.25, 2.90, .087, (pen, w, h) => {
-    pen.fillStyle = '#765338'; pen.font = '400 34px "JetBrains Mono", monospace'; pen.fillText('03  /  OUTPUT', 65, 100);
-    pen.fillStyle = '#24201b'; pen.font = '600 104px "DM Sans", sans-serif'; pen.fillText('Useful', 65, 274); pen.fillText('action.', 65, 384);
-    pen.fillStyle = '#b5a695'; [0, 1, 2].forEach(n => pen.fillRect(65, 475 + n * 48, [w * .72, w * .63, w * .48][n], 10));
-    pen.fillStyle = '#dba77a'; pen.fillRect(65, h - 330, w - 130, 163);
-    pen.strokeStyle = '#463426'; pen.lineWidth = 9; pen.beginPath(); pen.moveTo(106, h - 254); pen.lineTo(137, h - 221); pen.lineTo(192, h - 282); pen.stroke();
-    pen.fillStyle = '#463426'; pen.font = '600 38px "DM Sans", sans-serif'; pen.fillText('SOURCE ATTACHED', 237, h - 242);
-    pen.font = '400 29px "JetBrains Mono", monospace'; pen.fillStyle = '#765338'; pen.fillText('TRACEABLE BY DESIGN', 65, h - 78);
+    pen.fillStyle = '#b69bff'; pen.font = '400 34px "JetBrains Mono", monospace'; pen.fillText('03  /  OUTPUT', 65, 100);
+    pen.fillStyle = '#171021'; pen.font = '600 104px "DM Sans", sans-serif'; pen.fillText('Useful', 65, 274); pen.fillText('action.', 65, 384);
+    pen.fillStyle = '#b7a7cc'; [0, 1, 2].forEach(n => pen.fillRect(65, 475 + n * 48, [w * .72, w * .63, w * .48][n], 10));
+    pen.fillStyle = '#b69bff'; pen.fillRect(65, h - 330, w - 130, 163);
+    pen.strokeStyle = '#1c102c'; pen.lineWidth = 9; pen.beginPath(); pen.moveTo(106, h - 254); pen.lineTo(137, h - 221); pen.lineTo(192, h - 282); pen.stroke();
+    pen.fillStyle = '#1c102c'; pen.font = '600 38px "DM Sans", sans-serif'; pen.fillText('SOURCE ATTACHED', 237, h - 242);
+    pen.font = '400 29px "JetBrains Mono", monospace'; pen.fillStyle = '#b69bff'; pen.fillText('TRACEABLE BY DESIGN', 65, h - 78);
   });
 
   const routeMaterial = color => own(new LineBasicMaterial({ color, transparent: true, opacity: .75 }));

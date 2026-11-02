@@ -41,17 +41,18 @@ test('original PDF is unmodified and no longer embedded in HTML',async()=>{
   assert.ok(a.subarray(0,4).toString()==='%PDF');
   assert.ok(!(await readFile('dist/index.html','utf8')).includes('data:application/pdf'));
 });
-test('solid color and lean runtime constraints hold',async()=>{
+test('requested gradient theme and lean runtime constraints hold',async()=>{
   const css=await readFile('src/styles.css','utf8');
   const client=await readFile('src/client.js','utf8');
-  assert.ok(!/(?:linear|radial|conic)-gradient\s*\(/i.test(css));
+  assert.ok(css.includes('--orange:#ff9a52'));
+  assert.ok(/linear-gradient/.test(css));
   assert.ok(!/setInterval|eval\(/.test(client));
   assert.ok(client.includes("{ passive: true }"));
   assert.ok(css.includes('prefers-reduced-motion'));
   assert.ok((await stat('dist/index.html')).size<35000);
   assert.ok((await stat('dist/assets/client.js')).size<15000);
   // Includes the standalone scroll-story choreography, minified by the build.
-  assert.ok((await stat('dist/assets/styles.css')).size<45000);
+  assert.ok((await stat('dist/assets/styles.css')).size<50000);
 });
 test('project priority, excluded web experience and local font notices preserved',async()=>{
   assert.deepEqual(projects.map(p=>p.id),['synora','contextguard','termwise','face-web-blockchain']);

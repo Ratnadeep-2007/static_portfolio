@@ -80,3 +80,7 @@ Work is isolated to `portfolio-v3-research-redesign`; review the pull request be
 ## Spatial revision
 
 The hero now assembles physical evidence sheets around a layered copper processor. A full-width Build / Connect / Automate scroll sequence leads into four distinct project visuals. See `docs/spatial-iteration.md` for the review loop and repairs. Run `python scripts/check-spatial.py` for 60 additional integration assertions, including real motion/pause frame comparison.
+
+## Current palette
+
+Black and purple with purple gradients; orange is limited to small accents. This owner-requested palette supersedes the earlier copper direction. See docs/theme-black-purple.md.
