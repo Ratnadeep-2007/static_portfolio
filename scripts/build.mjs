@@ -18,6 +18,7 @@ export async function build() {
   await cp(join(root,'src/styles.css'),join(out,'assets/styles.css'));
   await cp(join(root,'src/client.js'),join(out,'assets/client.js'));
   await cp(join(root,'src/motion.js'),join(out,'assets/motion.js'));
+  for(const f of ['skin.css','experience.js','knot-graph.js']) await cp(join(root,'src',f),join(out,'assets',f));
   const home=HomePage(origin);
   await writeFile(join(out,'index.html'),home);
   // A generated convenience entry, not the editable source. npm run dev serves dist.

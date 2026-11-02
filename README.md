@@ -1,6 +1,6 @@
 # Ratnadeep Patil — portfolio v3
 
-A static editorial portfolio with four source-backed case studies and an original interactive evidence-flow study. The Signal Atlas redesign adds graphite/mineral/signal-lime styling, a responsive perspective Canvas 2D animation and meaningful progressive scroll reveals. Plain pre-rendered HTML, modular CSS/JavaScript, and a dependency-free Node build. No backend, database, framework, runtime package, or external asset CDN.
+An editorial cream-paper portfolio with a dark graph interlude, four interactive example demonstrations, and four source-backed case studies and an original interactive evidence-flow study. The Signal Atlas redesign adds graphite/mineral/signal-lime styling, a responsive perspective Canvas 2D animation and meaningful progressive scroll reveals. Plain pre-rendered HTML, modular CSS/JavaScript, and a dependency-free Node build. No backend, database, framework, runtime package, or external asset CDN.
 
 ## Run
 
@@ -83,3 +83,7 @@ Research, design, motion, content preservation, testing limits and screenshots a
 ## Delivery status
 
 The original redesign is isolated to `portfolio-v3-research-redesign`. Branch `portfolio-v4-hatchable-sync` adds the verified Hatchable production build and ready-to-host metadata. Hatchable version 4 was deployed on 1 November 2026, using the V3 redesign from commit `659535823b8ce8cf61127a531de6444b8755f035`. The Hatchable project is currently **personal/private**; the owner must switch visibility to Public in Hatchable settings for anonymous access. Neither branch changes `main`. External reference browsing was blocked by executor network policy, so the research report distinguishes accessible source-derived findings from unverified interactions. No portrait was fabricated or silently changed.
+
+## Design.md implementation (November 2026)
+
+The uploaded specification was adapted to the existing static build instead of replacing it with React/Tailwind. New files: `src/skin.css` (cream/ink-blue and dark-mode tokens), `src/sections.mjs` (hero, knot interlude, four illustrative demos), `src/experience.js` (theme, demo, scroll interactions), and `src/knot-graph.js` (WebGL2 trefoil morph plus static fallback). The four demos are illustrative and make no live-backend claims. The original case studies and unchanged résumé remain available. The source is buildable without external dependencies; deploy `dist/` after building with `SITE_URL` for the target origin. Any unverified real dates/portrait will not be fabricated. See `docs/design-implementation.md`.
