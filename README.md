@@ -52,3 +52,7 @@ The current browser gate is scripts/check-design.py. It checks the four demos, a
 Lighthouse 13.6.0 was run as a separate audit tool with Microsoft Edge. Scores and limits are in docs/lighthouse-summary.json and docs/qa-results.md. This does not establish physical-phone performance or full accessibility conformance.
 
 See docs/design-implementation.md for the brief adaptations, feature coverage, visual repairs and remaining external checks. The fictional demos do not claim that the featured applications are hosted or independently audited.
+
+## Vercel
+
+`vercel.json` configures the existing static build with `npm ci`, `npm run build`, output `dist/`, and trailing-slash directory routes. Use the Other framework preset. Set `SITE_URL` to the assigned HTTPS production domain in project environment variables before the production build so canonical and social metadata use that domain. No backend or SPA rewrite is required.
