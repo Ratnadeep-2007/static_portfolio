@@ -1,0 +1,33 @@
+{
+  "method": "Single local headless Microsoft Edge Lighthouse 13.6.0 run per profile, animations enabled. No physical-device or hosted Lighthouse score is claimed.",
+  "profiles": {
+    "mobile": {
+      "scores": {
+        "performance": 93,
+        "accessibility": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1612.8506,
+        "largest-contentful-paint": 1973.5632500000002,
+        "total-blocking-time": 277.0000000000002,
+        "cumulative-layout-shift": 0
+      },
+      "visible_label_names_pass": true,
+      "fetchTime": "2026-11-02T10:35:22.966Z"
+    },
+    "desktop": {
+      "scores": {
+        "performance": 99,
+        "accessibility": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 435.1742,
+        "largest-contentful-paint": 931.2612999999999,
+        "total-blocking-time": 20,
+        "cumulative-layout-shift": 0.0001020126851804596
+      },
+      "visible_label_names_pass": true,
+      "fetchTime": "2026-11-02T10:35:41.138Z"
+    }
+  }
+}

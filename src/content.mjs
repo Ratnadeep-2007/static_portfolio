@@ -4,8 +4,8 @@ export const profile = {
   bio: 'I build AI agents, connect scattered knowledge, and automate the work between tools.',
   about: 'I’m pursuing my B.Tech at Universal AI University, Mumbai. My work brings together applied AI, backend systems, and the interfaces people use to make decisions.',
   experience: [
-    { dates: '2025 — 2026', company: 'Exprivia', role: 'Microsoft 365 workflow automation', detail: 'Connected document handling, approvals, and reporting in Microsoft 365 workflows.' },
-    { dates: '2025 — 2026', company: 'Spider Smart Solutions', role: 'Full-stack inventory management', detail: 'Built inventory management software with React, TypeScript, FastAPI, and PostgreSQL.' },
+    { dates: 'Nov 2025 - Jan 2026', company: 'Exprivia', role: 'Microsoft 365 workflow automation', detail: 'Connected document handling, approvals, and reporting in Microsoft 365 workflows.' },
+    { dates: 'Apr 2025 - Jul 2026', company: 'Spider Smart Solutions', role: 'Full-stack inventory management', detail: 'Built inventory management software with React, TypeScript, FastAPI, and PostgreSQL.' },
     { dates: 'B.Tech', company: 'Universal AI University, Mumbai', role: 'Education', detail: 'Studying at the intersection of AI and software engineering.' }
   ],
   toolkit: [

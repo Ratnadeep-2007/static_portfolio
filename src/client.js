@@ -1,4 +1,5 @@
-import { initScrollStory } from './scroll-story.js';
+import { initDesign } from './design.js';
+import { motion } from './motion.config.js';
 
 (() => {
   'use strict';
@@ -48,60 +49,6 @@ import { initScrollStory } from './scroll-story.js';
       document.removeEventListener('keydown', key); document.removeEventListener('click', outside);
       mobile.removeEventListener('change', resize);
     };
-  }
-
-  function initExplorer() {
-    const root = document.querySelector('[data-explorer]');
-    if (!root) return () => {};
-    const dataElement = document.querySelector('#study-data');
-    let records;
-    try { records = JSON.parse(dataElement.textContent); } catch { return () => {}; }
-    const sources = [...root.querySelectorAll('[data-source]')];
-    const stages = [...root.querySelectorAll('[data-stage]')];
-    let source = 0;
-    let stage = 0;
-    let animationTimer;
-    function render(animate = true) {
-      const record = records[source];
-      sources.forEach((button, i) => button.setAttribute('aria-pressed', String(source === i)));
-      stages.forEach((button, i) => button.setAttribute('aria-pressed', String(stage === i)));
-      root.querySelectorAll('[data-route]').forEach(el => el.classList.toggle('active', Number(el.dataset.route) === source));
-      root.querySelectorAll('[data-node]').forEach(el => el.classList.toggle('active', Number(el.dataset.node) === source));
-      root.querySelectorAll('[data-stage-node]').forEach(el => el.classList.toggle('active', Number(el.dataset.stageNode) === stage));
-      root.querySelector('.decision-route').classList.toggle('active', stage >= 2);
-      root.querySelector('.provenance-return').classList.toggle('active', stage >= 2);
-      root.querySelector('.provenance-return').setAttribute('d', `M451 152v57H24V${[61,123,185][source]}H36`);
-      root.querySelector('[data-kind]').textContent = stage === 0 ? record.kind : stage === 1 ? 'CONTEXT / SOURCE RETAINED' : 'DECISION / TRACEABLE OUTPUT';
-      root.querySelector('[data-statement]').textContent = stage === 0 ? '“' + record.quote + '”' : stage === 1 ? record.context : record.decision;
-      root.querySelector('[data-citation]').textContent = record.source;
-      if (animate && !reducedMotion.matches) {
-        const detail = root.querySelector('.explorer-detail');
-        detail.classList.remove('is-changing');
-        void detail.offsetWidth;
-        detail.classList.add('is-changing');
-        clearTimeout(animationTimer);
-        animationTimer = setTimeout(() => detail.classList.remove('is-changing'), 250);
-      }
-    }
-    function click(event) {
-      const sourceButton = event.target.closest('[data-source]');
-      const stageButton = event.target.closest('[data-stage]');
-      if (sourceButton) { source = Number(sourceButton.dataset.source); stage = 0; render(event.detail > 0); }
-      else if (stageButton) { stage = Number(stageButton.dataset.stage); render(event.detail > 0); }
-    }
-    function key(event) {
-      const button = event.target.closest('[data-source],[data-stage]');
-      if (!button || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(event.key)) return;
-      event.preventDefault();
-      const set = button.hasAttribute('data-source') ? sources : stages;
-      let index = set.indexOf(button);
-      index = event.key === 'Home' ? 0 : event.key === 'End' ? set.length - 1 : (index + (['ArrowRight','ArrowDown'].includes(event.key) ? 1 : -1) + set.length) % set.length;
-      set[index].focus(); set[index].click();
-    }
-    root.addEventListener('click', click);
-    root.addEventListener('keydown', key);
-    render(false);
-    return () => { root.removeEventListener('click', click); root.removeEventListener('keydown', key); clearTimeout(animationTimer); };
   }
 
   function initCopy() {
@@ -157,7 +104,7 @@ import { initScrollStory } from './scroll-story.js';
     let frame = 0;
     function animate(el, frames, options) {
       if (reducedMotion.matches || el.contains(document.activeElement)) return;
-      const animation = el.animate(frames, { duration: 760, easing: 'cubic-bezier(.22,1,.36,1)', ...options });
+      const animation = el.animate(frames, { duration: motion.reveal, easing: motion.ease, ...options });
       animations.push(animation);
       return animation;
     }
@@ -168,12 +115,12 @@ import { initScrollStory } from './scroll-story.js';
         if (el.dataset.motionRevealed) continue;
         el.dataset.motionRevealed = 'true';
         if (el.matches('.project-art')) {
-          animate(el, [{ clipPath: 'inset(0 100% 0 0)', opacity: .45 }, { clipPath: 'inset(0 0% 0 0)', opacity: 1 }], { duration: 1100 });
+          animate(el, [{ clipPath: 'inset(0 100% 0 0)', opacity: .45 }, { clipPath: 'inset(0 0% 0 0)', opacity: 1 }], { duration: motion.scene });
           el.querySelectorAll('svg > g path[stroke]').forEach((path, i) => {
             if (reducedMotion.matches) return;
             const length = path.getTotalLength();
             path.style.strokeDasharray = String(length);
-            const animation = animate(path, [{ strokeDashoffset: length }, { strokeDashoffset: 0 }], { duration: 1100, delay: 180 + i * 50 });
+            const animation = animate(path, [{ strokeDashoffset: length }, { strokeDashoffset: 0 }], { duration: motion.scene, delay: 180 + i * 50 });
             if (animation) animation.finished.then(() => path.style.removeProperty('stroke-dasharray')).catch(() => path.style.removeProperty('stroke-dasharray'));
           });
         } else {
@@ -229,50 +176,8 @@ import { initScrollStory } from './scroll-story.js';
     };
   }
 
-  function initThreeScene() {
-    const root = document.querySelector('[data-explorer]');
-    if (!root || !clientURL || !('IntersectionObserver' in window)) return () => {};
-    const desktop = matchMedia('(min-width: 701px)');
-    let instance = null, visible = false, disposed = false, loading = false, timer;
-    root.dataset.renderer = 'svg';
-    function sync() {
-      clearTimeout(timer);
-      if (reducedMotion.matches || !desktop.matches) { instance?.dispose(); instance = null; return; }
-      if (instance) { instance.setPaused(root.classList.contains('motion-paused')); return; }
-      if (!visible || loading || disposed || root.classList.contains('motion-paused')) return;
-      timer = setTimeout(async () => {
-        loading = true;
-        try {
-          const module = await import(new URL('system-scene.js', clientURL).href);
-          if (!disposed && visible && !reducedMotion.matches && desktop.matches && !root.classList.contains('motion-paused')) instance = module.createSystemScene(root);
-        } catch { root.dataset.renderer = 'svg'; }
-        finally { loading = false; }
-      }, 700);
-    }
-    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }, { threshold: .05 });
-    observer.observe(root);
-    reducedMotion.addEventListener('change', sync); desktop.addEventListener('change', sync);
-    root.addEventListener('diagram-playback', sync);
-    return () => { disposed = true; clearTimeout(timer); observer.disconnect(); instance?.dispose(); reducedMotion.removeEventListener('change', sync); desktop.removeEventListener('change', sync); root.removeEventListener('diagram-playback', sync); };
-  }
-
-  function initDiagramPlayback() {
-    const root = document.querySelector('[data-explorer]');
-    const button = root?.querySelector('.motion-toggle');
-    if (!button) return () => {};
-    function refresh() {
-      const paused = root.classList.contains('motion-paused');
-      button.disabled = reducedMotion.matches;
-      button.textContent = reducedMotion.matches ? 'Reduced motion' : paused ? 'Play diagram' : 'Pause diagram';
-      button.setAttribute('aria-label', reducedMotion.matches ? 'Diagram follows reduced-motion preference' : paused ? 'Play diagram animation' : 'Pause diagram animation');
-    }
-    function toggle() { root.classList.toggle('motion-paused'); refresh(); root.dispatchEvent(new Event('diagram-playback')); }
-    button.addEventListener('click', toggle); reducedMotion.addEventListener('change', refresh); refresh();
-    return () => { button.removeEventListener('click', toggle); reducedMotion.removeEventListener('change', refresh); };
-  }
-
   let cleanups = [];
-  function mount() { cleanups = [initMenu(), initExplorer(), initCopy(), initNavigation(), initMotion(), initDiagramPlayback(), initThreeScene(), initScrollStory()]; }
+  function mount() { cleanups = [initMenu(), initCopy(), initNavigation(), initMotion(), initDesign(clientURL)]; }
   mount();
   window.addEventListener('pagehide', () => { cleanups.forEach(fn => fn()); cleanups = []; });
   window.addEventListener('pageshow', event => { if (event.persisted) mount(); });

@@ -12,7 +12,7 @@
     "build": "node scripts/build.mjs",
     "preview": "node scripts/serve.mjs",
     "test": "node --test tests/static.test.mjs",
-    "test:browser": "python scripts/check-browser.py"
+    "test:browser": "python scripts/check-design.py"
   },
   "dependencies": {
     "three": "0.187.0"

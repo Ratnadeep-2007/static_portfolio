@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile, cp, stat } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, cp, stat, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { resolve, dirname, join } from 'node:path';
 import { profile, projects } from '../src/content.mjs';
@@ -16,10 +16,11 @@ export async function build() {
   await cp(join(root,'public'),out,{recursive:true});
   await mkdir(join(out,'assets/diagrams'),{recursive:true});
   await mkdir(join(out,'assets/og'),{recursive:true});
-  const styles=(await readFile(join(root,'src/styles.css'),'utf8'))+'\n'+(await readFile(join(root,'src/scroll-story.css'),'utf8'));
+  const styles=(await readFile(join(root,'src/styles.css'),'utf8'))+'\n'+(await readFile(join(root,'src/design.css'),'utf8'));
   await writeFile(join(out,'assets/styles.css'),(await transform(styles,{loader:'css',minify:true})).code);
   await bundle({ entryPoints:[join(root,'src/client.js')], outfile:join(out,'assets/client.js'), bundle:true, minify:true, target:'es2020', legalComments:'inline' });
-  await bundle({ entryPoints:[join(root,'src/system-scene.js')], outfile:join(out,'assets/system-scene.js'), bundle:true, minify:true, format:'esm', platform:'browser', target:'es2020', legalComments:'inline' });
+  await bundle({ entryPoints:[join(root,'src/knot-scene.js')], outfile:join(out,'assets/knot-scene.js'), bundle:true, minify:true, format:'esm', platform:'browser', target:'es2020', legalComments:'inline' });
+  for(const file of ['system-scene.js','ratnadeep-portrait.png']) { await rm(join(out,'assets',file),{force:true}); await rm(join(root,'assets',file),{force:true}); }
   const home=HomePage(origin);
   await writeFile(join(out,'index.html'),home);
   // A generated convenience entry, not the editable source. npm run dev serves dist.
@@ -37,7 +38,7 @@ export async function build() {
   await writeFile(join(out,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
   await writeFile(join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pages.map(p=>`<url><loc>${origin}${p.path}</loc></url>`).join('')}</urlset>\n`);
   await writeFile(join(out,'404.html'),layout({body:'<section class="case-hero wrap"><p class="eyebrow">404 / PAGE NOT FOUND</p><h1>This path ends here.</h1><p class="case-summary">The work is still one click away.</p><a class="text-link" href="/">Back to the portfolio ↗</a></section>',title:'Page not found — Ratnadeep Patil',description:'Return to Ratnadeep Patil’s portfolio.',origin,id:'home',path:'/404.html'}));
-  const report={generatedAt:new Date().toISOString(),origin,pages:pages.map(p=>p.path),homeBytes:(await stat(join(out,'index.html'))).size,clientBytes:(await stat(join(out,'assets/client.js'))).size,cssBytes:(await stat(join(out,'assets/styles.css'))).size,sceneBytes:(await stat(join(out,'assets/system-scene.js'))).size,dependencies:1,optionalRenderer:'three@0.187.0'};
+  const report={generatedAt:new Date().toISOString(),origin,pages:pages.map(p=>p.path),homeBytes:(await stat(join(out,'index.html'))).size,clientBytes:(await stat(join(out,'assets/client.js'))).size,cssBytes:(await stat(join(out,'assets/styles.css'))).size,sceneBytes:(await stat(join(out,'assets/knot-scene.js'))).size,dependencies:1,optionalRenderer:'three@0.187.0'};
   await writeFile(join(out,'build-report.json'),JSON.stringify(report,null,2)+'\n');
   // Keep a ready-to-host root copy as well as the canonical dist upload folder.
   await cp(join(out,'assets'),join(root,'assets'),{recursive:true});

@@ -38,5 +38,35 @@
     "foreground": "#171021",
     "background": "#DEDCE3",
     "ratio": 13.64
+  },
+  {
+    "foreground": "#A89AB2",
+    "background": "#0E0D12",
+    "ratio": 7.31
+  },
+  {
+    "foreground": "#BA9FC8",
+    "background": "#0E0D12",
+    "ratio": 8.19
+  },
+  {
+    "foreground": "#B8D0C0",
+    "background": "#111C16",
+    "ratio": 10.67
+  },
+  {
+    "foreground": "#FFD2B1",
+    "background": "#4F2E1C",
+    "ratio": 8.68
+  },
+  {
+    "foreground": "#C1DFCB",
+    "background": "#26382F",
+    "ratio": 8.69
+  },
+  {
+    "foreground": "#99919F",
+    "background": "#08080B",
+    "ratio": 6.58
   }
 ]
