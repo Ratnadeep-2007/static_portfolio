@@ -365,16 +365,25 @@ em{font:inherit;font-weight:600;color:var(--copper)}
 
 /* Requested black / purple gradient direction. Orange is punctuation only. */
 :root{--accent:#b69bff;--orange:#ff9a52;--copper:var(--accent)}
-body{background:#09070d}.home-page{background:radial-gradient(ellipse at 88% 10%,#29133f 0,transparent 40%),#09070d}
+body,.home-page{background:#08080b}.hero{position:relative;isolation:isolate}.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 28% 44% at 72% 40%,rgba(126,70,198,.12),transparent 100%)}
 .hero-period,.tiny-square{color:var(--orange)}.tiny-square{background:var(--orange)}
-.hero-description{color:#c9bddb}.social-links a{border-color:#674889}.social-links a:hover{background:linear-gradient(110deg,#793ed2,#502180);color:#fff;border-color:#b69bff}
-.work-section,.case-content{background:#0e0b14;color:#f4efff}
-.work-index{background:#0e0b14;border-color:#33283f}.work-index a[aria-current],.work-index a:hover{color:#c9abff}.work-index a::after{background:#aa76f7}
+.hero-description{color:#c9bddb}.social-links a{border-color:#674889}.social-links a:hover{background:#1d1628;color:#fff;border-color:#796194}
+.work-section,.case-content{background:#0a0a0d;color:#f4efff}
+.work-index{background:#0a0a0d;border-color:#33283f}.work-index a[aria-current],.work-index a:hover{color:#c9abff}.work-index a::after{background:#aa76f7}
 .work-section .eyebrow,.case-article .eyebrow{color:#b69bff}.work-section a:focus-visible,.case-content a:focus-visible{outline-color:#c9abff}
-.project-art{background:linear-gradient(145deg,#27143c,#100c19 70%);border-color:#493160;box-shadow:none}.art-caption{background:#120c1d;border-color:#3b2a4e;color:#c1b4d3}
-.project-stack,.quiet-link{color:#b4a9c3}.source-picker button[aria-pressed=true]{background:linear-gradient(110deg,#793ed2,#502180);color:#fff}
+.project-art{background:radial-gradient(ellipse at 80% 15%,rgba(117,68,166,.08),transparent 62%),#0c0c10;border-color:#302a39;box-shadow:none}.art-caption{background:#120c1d;border-color:#3b2a4e;color:#c1b4d3}
+.project-stack,.quiet-link{color:#b4a9c3}.source-picker button[aria-pressed=true]{background:#19151f;color:#f4efff;box-shadow:inset 0 -2px #9270b8}
 .source-picker button:hover:not([aria-pressed=true]){background:#291a3b}.motion-toggle{color:#c7a7ff}.motion-toggle:hover:not(:disabled){background:#27153a}
 .copy-email,.button-link{border-color:#674889}.copy-email:hover{background:#291a3b}
-.contact-section{background:linear-gradient(125deg,#100b18,#241032 65%,#110919)}
+.contact-section{background:radial-gradient(ellipse at 75% 100%,rgba(110,59,160,.075),transparent 62%),#08080b}
 .interface-window{background:#eae4f5}.window-bar{background:#d9cde9;color:#171021}
 .case-figure img{background:#15101f}.next-project>span{color:#b69bff}
+
+/* Monospace engineering details are the restrained orange accent. */
+.system-top .mono,.hero-copy>.eyebrow,.hero-foot,.project-stack,.project-copy>.eyebrow,.work-section .eyebrow,.case-article .eyebrow,.case-meta>div>.mono,.explorer-detail>.mono,.source-citation,.art-number{color:#e7a676}
+.art-caption{background:#0b0b0f}.motion-toggle{color:#b8adc7}.source-picker button:hover:not([aria-pressed=true]){background:#141119}
+.system-drawing .context-node rect{fill:#4c3b60;stroke:#826a9e}.system-drawing .context-node text{fill:#eae5f1}.system-drawing .context-node>path{stroke:#b3a0cd}
+
+/* Visual review: no glow edge or oversized purple typography. */
+.work-section em,.about-grid h2 em,.contact-heading h2 em{color:var(--white)}
+.system-drawing .source-node.active rect{fill:#a99bbb;stroke:#b3a0cd}

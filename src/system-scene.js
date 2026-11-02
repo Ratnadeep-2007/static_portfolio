@@ -22,13 +22,13 @@ export function createSystemScene(root) {
   const resources = new Set();
   const own = resource => { resources.add(resource); return resource; };
   const scene = new Scene();
-  scene.add(new AmbientLight(0xeee0ff, 2.2));
-  const keyLight = new DirectionalLight(0xdcc5ff, 3.2); keyLight.position.set(-4, 6, 10); scene.add(keyLight);
+  scene.add(new AmbientLight(0xefedf2, 2.2));
+  const keyLight = new DirectionalLight(0xd8d3e0, 3.2); keyLight.position.set(-4, 6, 10); scene.add(keyLight);
   const sideLight = new DirectionalLight(0xb7b4ae, 1.5); sideLight.position.set(6, -2, 2); scene.add(sideLight);
   const assembly = new Group(); scene.add(assembly);
   const camera = new OrthographicCamera(-6, 6, 4.5, -4.5, .1, 70);
   camera.position.set(0, 0, 20);
-  const copper = 0x8651d4, ink = 0x171021, ivory = 0xeae4f5;
+  const copper = 0x604276, ink = 0x171021, ivory = 0xdedce3;
   const material = (color, metalness = .05) => own(new MeshStandardMaterial({ color, roughness: .76, metalness }));
   const edgeMaterial = own(new LineBasicMaterial({ color: 0xbb90ff, transparent: true, opacity: .7 }));
   const mutedLine = 0x70568c;
@@ -79,9 +79,9 @@ export function createSystemScene(root) {
   box(processor, 2.08, 2.10, .26, darkMaterial, [0, 0, .45], true);
   box(processor, 1.88, 1.9, .13, copperMaterial, [0, 0, .66]);
   face(processor, 1.88, 1.9, .733, (pen, w, h) => {
-    pen.fillStyle = '#1c102c'; pen.font = '400 38px "JetBrains Mono", monospace'; pen.fillText('SOURCE → SYSTEM', 66, 93);
+    pen.fillStyle = '#e4dfea'; pen.font = '400 38px "JetBrains Mono", monospace'; pen.fillText('SOURCE → SYSTEM', 66, 93);
     pen.font = '600 126px "DM Sans", sans-serif'; pen.fillText('CONTEXT', 62, 380);
-    pen.strokeStyle = '#38264f'; pen.lineWidth = 3; pen.strokeRect(66, h - 188, w - 132, 92);
+    pen.strokeStyle = '#a493b6'; pen.lineWidth = 3; pen.strokeRect(66, h - 188, w - 132, 92);
     pen.font = '400 37px "JetBrains Mono", monospace'; pen.fillText('LINK / RETAIN / REASON', 100, h - 130);
   });
   // Short physical pins make the processor read as hardware rather than a UI card.

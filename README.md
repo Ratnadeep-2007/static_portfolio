@@ -83,4 +83,4 @@ The hero now assembles physical evidence sheets around a layered copper processo
 
 ## Current palette
 
-Black and purple with purple gradients; orange is limited to small accents. This owner-requested palette supersedes the earlier copper direction. See docs/theme-black-purple.md.
+Near-black dominates, with faint localized purple glows and restrained orange monospace code details. This owner-requested palette supersedes the earlier copper direction. See docs/theme-black-purple.md.

@@ -45,7 +45,7 @@ test('requested gradient theme and lean runtime constraints hold',async()=>{
   const css=await readFile('src/styles.css','utf8');
   const client=await readFile('src/client.js','utf8');
   assert.ok(css.includes('--orange:#ff9a52'));
-  assert.ok(/linear-gradient/.test(css));
+  assert.ok(/radial-gradient/.test(css));
   assert.ok(!/setInterval|eval\(/.test(client));
   assert.ok(client.includes("{ passive: true }"));
   assert.ok(css.includes('prefers-reduced-motion'));
